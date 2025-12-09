@@ -26,8 +26,6 @@
       background:radial-gradient(ellipse at center,#1a0f0a 0%,#000 85%);
       color:#fff;line-height:1.6;text-align:center;
     }
-
-    /* Fondo */
     .fondo{
       position:fixed;inset:0;z-index:-1;
       background:url('https://iili.io/KmM0LyN.md.jpg') center/cover no-repeat;
@@ -79,107 +77,122 @@
       text-shadow:0 0 10px #ffcc66,0 0 20px #ff00ff,0 0 30px #00ffff;
     }
 
-    /* Secciones */
-    section{
-      text-align:center;padding:40px 20px;max-width:900px;margin:0 auto;
-      opacity:0;transform:translateY(50px);transition:all 1s ease
-    }
+    section{text-align:center;padding:40px 20px;max-width:900px;margin:0 auto;opacity:0;transform:translateY(50px);transition:all 1s ease}
     section.visible{opacity:1;transform:translateY(0)}
 
-    .horarios{font-size:1.4em;margin-top:15px;color:#fff;text-shadow:0 0 15px #ff6600,0 0 25px #ffcc66}
+    .horarios{
+      font-size:1.4em;margin-top:15px;color:#fff;
+      text-shadow:0 0 15px #ff6600,0 0 25px #ffcc66;
+    }
 
-    /* Bloques */
     .bloque{
       padding:45px 25px;background:rgba(0,0,0,0.65);
       border-radius:15px;margin:40px auto;backdrop-filter:blur(5px);
       box-shadow:0 0 25px rgba(255,255,255,0.05);
     }
     .bloque h3{
-      color:#ffcc66;text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff;
-      font-size:clamp(1.6em,4vw,2.2em);margin-bottom:15px;
+      color:#ffcc66;
+      text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff;
+      font-size:clamp(1.6em,4vw,2.2em);
+      margin-bottom:15px;
     }
-    .bloque p.descripcion{
-      font-size:1.2em;color:#fff;text-shadow:0 0 10px rgba(255,204,102,0.7);
+    .bloque p.descripcion {
+      font-size:1.2em;color:#fff;
+      text-shadow:0 0 10px rgba(255, 204, 102, 0.7);
       line-height:1.9;margin:18px 0;
     }
 
-    /* Anfitrión */
     .anfitrion{text-align:center;padding:80px 20px;}
     .titulo-anfitrion{
-      font-size:clamp(1.4em,4vw,2em);font-weight:700;margin-bottom:25px;
-      color:#ffcc66;text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ffcc66;
+      font-size:clamp(1.4em,4vw,2em);
+      font-weight:700;margin-bottom:25px;
+      color:#ffcc66;
+      text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ffcc66;
+      letter-spacing:2px;
     }
     .img-anfitrion{
-      width:min(90%,650px);border-radius:15px;display:block;margin:auto;
-      box-shadow:0 0 60px #ff00ff,0 0 90px #00ffff,0 0 120px #ffcc66,0 0 160px #ff00ff;
+      width:min(90%,650px);
+      border-radius:15px;
+      display:block;margin:auto;
+      box-shadow:
+        0 0 60px #ff00ff,
+        0 0 90px #00ffff,
+        0 0 120px #ffcc66,
+        0 0 160px #ff00ff;
       animation:pulsoMulti 5s infinite ease-in-out;
     }
-
     @keyframes pulsoMulti{
       0%{box-shadow:0 0 50px #ff00ff,0 0 80px #00ffff,0 0 100px #ffcc66}
       50%{box-shadow:0 0 90px #ff00ff,0 0 140px #00ffff,0 0 180px #ffcc66}
       100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
     }
 
-    /* Redes */
+    /* 🎥 WIDGET YOUTUBE – estilo adaptado a TÍO SERGIO */
+    .yt-section-title{
+      font-family:'Montserrat';
+      font-size:2.2em;
+      margin-top:35px;
+      color:#ffcc66;
+      text-shadow:0 0 20px #ff00ff,0 0 35px #00ffff;
+    }
+
+    .yt-main{
+      width:100%;max-width:780px;margin:25px auto;
+      aspect-ratio:16/9;border-radius:15px;overflow:hidden;
+      box-shadow:0 0 25px #ff00ff;
+    }
+    .yt-main iframe{width:100%;height:100%;border:none;}
+
+    .yt-bar{
+      display:flex;align-items:center;justify-content:center;
+      gap:16px;margin-top:15px;flex-wrap:wrap;
+    }
+    .yt-logo{
+      width:130px;border-radius:12px;
+      filter:drop-shadow(0 0 20px red);
+    }
+
+    .yt-thumbs{
+      display:flex;flex-wrap:wrap;justify-content:center;
+      gap:14px;margin-top:20px;
+    }
+    .yt-thumbs img{
+      width:150px;height:85px;border-radius:10px;
+      object-fit:cover;cursor:pointer;
+      border:3px solid transparent;transition:.25s;
+    }
+    .yt-thumbs img:hover{
+      transform:scale(1.05);border-color:#ffcc66;
+    }
+    .yt-thumbs img.selected{
+      border-color:#ff00ff;box-shadow:0 0 15px #ff00ff;
+    }
+
+    /* CONTACTO */
     .contacto-final{text-align:center;padding:70px 20px;background:transparent;border-top:1px solid rgba(255,255,255,0.15);}
     .contacto-final a{display:block;color:#fff;font-size:1.1em;margin:8px 0;text-decoration:none;transition:.3s;text-shadow:0 0 8px #ffcc66;}
     .contacto-final a:hover{color:#ffcc66;text-shadow:0 0 15px #ffcc66}
-
     .redes-local{display:flex;justify-content:center;gap:35px;margin-top:20px}
     .redes-local a img{width:55px;height:55px;transition:all .3s ease;filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));}
     .redes-local a img:hover{transform:scale(1.15);filter:drop-shadow(0 0 20px #00ffff) drop-shadow(0 0 35px #ff00ff);}
 
     .final-fomo{
-      text-align:center;padding:60px 20px;background:transparent;font-size:1.5em;color:#ffcc66;
-      text-shadow:0 0 25px #ff00ff,0 0 45px #00ffff;font-weight:600;animation:brillaFomo 3s infinite ease-in-out;
+      text-align:center;
+      padding:60px 20px;
+      background:transparent;
+      font-size:1.5em;
+      color:#ffcc66;
+      text-shadow:0 0 25px #ff00ff,0 0 45px #00ffff;
+      font-weight:600;
+      animation:brillaFomo 3s infinite ease-in-out;
     }
 
-    /* --- YOUTUBE BLOCK (AGREGADO) --- */
-    .yt-title{
-      font-size:2.2em;font-weight:800;
-      color:#ffcc66;text-shadow:0 0 15px #ff00ff;
-      display:flex;align-items:center;justify-content:center;gap:15px;
-      margin-bottom:20px;
-    }
-    .yt-logo{
-      width:80px;border-radius:12px;
-      filter:drop-shadow(0 0 18px #ff0000);
-    }
-    .yt-sub{
-      background:#ff0000;color:#fff;padding:12px 28px;
-      border-radius:28px;font-size:1.2em;font-weight:700;
-      border:none;cursor:pointer;box-shadow:0 0 18px #ff0000;
-      margin-bottom:25px;
-    }
-    .yt-sub:hover{transform:scale(1.05);}
+    @keyframes brilloLetra{0%{opacity:1}50%{opacity:0.6;filter:brightness(1.5)}100%{opacity:1}}
+    @keyframes brillaFomo{0%,100%{text-shadow:0 0 25px #ffcc66,0 0 45px #00ffff;}50%{text-shadow:0 0 40px #ff00ff,0 0 60px #ffcc66;}}
 
-    .video-main{
-      max-width:780px;width:100%;
-      aspect-ratio:16/9;margin:0 auto 25px;
-      border-radius:15px;overflow:hidden;
-      box-shadow:0 0 25px #ff00ff;
-    }
-    .video-main iframe{width:100%;height:100%;border:none}
-
-    .thumbnails{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
-    }
-    .thumbnails img{
-      width:150px;height:85px;border-radius:10px;cursor:pointer;
-      border:3px solid transparent;transition:.25s;
-    }
-    .thumbnails img:hover{transform:scale(1.05);border-color:#ffcc66}
-    .thumbnails img.selected{
-      border-color:#ff00ff;box-shadow:0 0 15px #ff00ff;
-    }
-
-    @media(max-width:600px){
-      .yt-title{font-size:1.6em;flex-direction:column}
-      .yt-logo{width:60px}
-      .thumbnails img{width:46%;height:auto}
-    }
-
+    footer{background:rgba(0,0,0,0.9);padding:20px 10px;text-align:center;color:#aaa;font-size:.9em;border-top:1px solid rgba(255,255,255,0.1);letter-spacing:.5px;}
+    footer a{color:#00ffff;text-decoration:none;transition:.3s}
+    footer a:hover{color:#ffcc66}
   </style>
 </head>
 <body>
@@ -193,38 +206,11 @@
     </div>
   </header>
 
-  <!-- 🔥🔥🔥 SEGUINOS EN YOUTUBE (AGREGADO) 🔥🔥🔥 -->
-  <section class="bloque">
-    <h2 class="yt-title">
-      <img class="yt-logo" src="https://iili.io/fA4eRNj.jpg">
-      SEGUINOS EN YOUTUBE
-    </h2>
-
-    <button class="yt-sub"
-      onclick="window.open('https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1','_blank')">
-      🔴 SUSCRIBIRSE
-    </button>
-
-    <div class="video-main">
-      <iframe id="mainVideo"
-        src="https://www.youtube.com/embed/Ij-lNWYQGiE"
-        allowfullscreen></iframe>
-    </div>
-
-    <div class="thumbnails">
-      <img src="https://img.youtube.com/vi/Ij-lNWYQGiE/hqdefault.jpg" data-video-id="Ij-lNWYQGiE" class="selected">
-      <img src="https://img.youtube.com/vi/kq2g8Y3lkO0/hqdefault.jpg" data-video-id="kq2g8Y3lkO0">
-      <img src="https://img.youtube.com/vi/gmj1ktdFOs8/hqdefault.jpg" data-video-id="gmj1ktdFOs8">
-      <img src="https://img.youtube.com/vi/1RWspCphiyI/hqdefault.jpg" data-video-id="1RWspCphiyI">
-      <img src="https://img.youtube.com/vi/g9XH1by4Uio/hqdefault.jpg" data-video-id="g9XH1by4Uio">
-    </div>
-  </section>
-  <!-- FIN BLOQUE YOUTUBE -->
-
   <section class="horarios">🎶 Viernes y Sábados desde las 22:00 hs 🎶</section>
 
   <section class="bloque">
     <h3>🔥 La noche es de los mayores 🔥</h3>
+
     <p class="descripcion">💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.</p>
     <p class="descripcion">🎶 Cumbia • Cuarteto • rock and Roll Shows en vivo de bandas tropicales nacionales e internacionales.</p>
     <p class="descripcion">🎉 ¡Vení a conocerlo, no te lo pierdas!</p>
@@ -238,16 +224,55 @@ SERGIO LEAL 😎</h3>
     <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
   </section>
 
+  <!-- ⭐⭐⭐⭐⭐ YOUTUBE WIDGET – AGREGADO EXACTO DESPUÉS DE ANFITRIÓN ⭐⭐⭐⭐⭐ -->
+  <section id="youtubeWidget">
+
+    <h2 class="yt-section-title">SEGUINOS EN YOUTUBE</h2>
+
+    <div class="yt-bar">
+      <img class="yt-logo" src="https://iili.io/fA4eRNj.jpg">
+      <a href="https://www.youtube.com/@elcanaldelasestrellasok" target="_blank"
+         style="color:#ffcc66;font-size:1.5em;text-shadow:0 0 18px #ff00ff;">
+         Canal de las Estrellas OK
+      </a>
+    </div>
+
+    <button onclick="window.open('https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1','_blank')"
+      style="
+      background:#ff0000;color:white;padding:12px 32px;border:none;
+      font-size:1.25em;border-radius:30px;font-weight:700;cursor:pointer;
+      margin-top:15px;box-shadow:0 0 18px #ff0000;">
+      🔴 SUSCRIBIRSE
+    </button>
+
+    <div class="yt-main">
+      <iframe id="mainYT"
+        src="https://www.youtube.com/embed/Ij-lNWYQGiE"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="yt-thumbs">
+      <img src="https://img.youtube.com/vi/Ij-lNWYQGiE/hqdefault.jpg" data-video="Ij-lNWYQGiE" class="selected">
+      <img src="https://img.youtube.com/vi/kq2g8Y3lkO0/hqdefault.jpg" data-video="kq2g8Y3lkO0">
+      <img src="https://img.youtube.com/vi/gmj1ktdFOs8/hqdefault.jpg" data-video="gmj1ktdFOs8">
+      <img src="https://img.youtube.com/vi/1RWspCphiyI/hqdefault.jpg" data-video="1RWspCphiyI">
+      <img src="https://img.youtube.com/vi/g9XH1by4Uio/hqdefault.jpg" data-video="g9XH1by4Uio">
+    </div>
+
+  </section>
+  <!-- ⭐⭐⭐⭐⭐ FIN DEL WIDGET YOUTUBE ⭐⭐⭐⭐⭐ -->
+
   <section class="contacto-final">
     <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
     <a href="tel:+541123272061">📞 11 2327-2061</a>
     <a href="https://maps.google.com/?q=Av.+Pres.+Art.+Umberto+Illia+6829,+José+C.+Paz,+Bs.+As." target="_blank">📍 Av. Pres. Art. Umberto Illia 6829, José C. Paz, Bs. As.</a>
     <div class="redes-local">
       <a href="https://www.instagram.com/tiosergio935/" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
       </a>
       <a href="https://wa.me/541123272061" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
       </a>
     </div>
   </section>
@@ -263,7 +288,7 @@ SERGIO LEAL 😎</h3>
   </footer>
 
   <script>
-    /* Texto circular */
+    /* TEXTO CIRCULAR — 100% FIEL AL ORIGINAL */
     const texto = "EL LUGAR DE LOS MAYORES ✦ ";
     const contenedor = document.getElementById("textoCircular");
     for (let i = 0; i < texto.length; i++) {
@@ -273,7 +298,7 @@ SERGIO LEAL 😎</h3>
       contenedor.appendChild(letra);
     }
 
-    /* Animación aparición */
+    /* ANIMACIONES DE SECCIONES */
     const secciones = document.querySelectorAll("section");
     const mostrar = () => {
       secciones.forEach(sec=>{
@@ -284,15 +309,15 @@ SERGIO LEAL 😎</h3>
     window.addEventListener("scroll", mostrar);
     mostrar();
 
-    /* CAMBIO DE VIDEO (MISMO QUE RADIO IMAGEN) */
-    document.querySelectorAll('.thumbnails img').forEach(el=>{
+    /* CAMBIO DE VIDEO — MISMO SISTEMA QUE RADIO IMAGEN */
+    document.querySelectorAll('.yt-thumbs img').forEach(el=>{
       el.addEventListener('click', ()=>{
-        const id = el.getAttribute('data-video-id');
-        const iframe = document.getElementById('mainVideo');
+        const id = el.getAttribute('data-video');
+        const iframe = document.getElementById('mainYT');
 
-        iframe.src = 'https://www.youtube.com/embed/' + id;
+        iframe.src = "https://www.youtube.com/embed/" + id;
 
-        document.querySelectorAll('.thumbnails img')
+        document.querySelectorAll('.yt-thumbs img')
           .forEach(x => x.classList.remove('selected'));
         el.classList.add('selected');
       });
