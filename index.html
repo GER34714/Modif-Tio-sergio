@@ -7,11 +7,6 @@
   <meta name="description" content="Bailanta, música, tragos y diversión. Viernes y sábados desde las 22:00 hs en José C. Paz. ¡Viví la noche con TÍO SERGIO™!" />
 
   <link rel="icon" type="image/png" href="https://iili.io/KmWWSnV.md.webp" />
-  <meta property="og:title" content="TÍO SERGIO™ | El lugar de los mayores 🎤💃" />
-  <meta property="og:description" content="Cumbia• Cuarteto • rock and roll • Shows en vivo. Viernes y sábados desde las 22:00 hs en José C. Paz." />
-  <meta property="og:image" content="https://iili.io/KpcsxCN.md.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tio-sergio.onrender.com/" />
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -21,12 +16,14 @@
       background:radial-gradient(ellipse at center,#1a0f0a 0%,#000 85%);
       color:#fff;line-height:1.6;text-align:center;
     }
+
     .fondo{
       position:fixed;inset:0;z-index:-1;
       background:url('https://iili.io/KmM0LyN.md.jpg') center/cover no-repeat;
       filter:brightness(0.7);
       animation:reflejo 10s ease-in-out infinite alternate;
     }
+
     @keyframes reflejo{
       0%{filter:brightness(0.7)saturate(1.1)}
       50%{filter:brightness(0.85)saturate(1.4)}
@@ -40,15 +37,27 @@
       background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);
     }
 
-    .logo-container{position:relative;display:inline-block;margin-top:50px;}
+    /* LOGO PRINCIPAL */
+    .logo-container{position:relative;display:inline-block;margin-top:50px;animation:floatLogo 6s ease-in-out infinite;}
     .logo-principal{
       width:clamp(260px,55vw,440px);
       border-radius:50%;
       filter:drop-shadow(0 0 25px #fff);
       position:relative;z-index:2;
+      animation:neonLoop 5s linear infinite;
     }
 
-    /* 🔥 TEXTO CIRCULAR */
+    @keyframes neonLoop{
+      0%{filter:drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 45px #00ffff)}
+      25%{filter:drop-shadow(0 0 40px #ffcc66) drop-shadow(0 0 60px #00ffff)}
+      50%{filter:drop-shadow(0 0 60px #ff00ff) drop-shadow(0 0 80px #ffcc66)}
+      75%{filter:drop-shadow(0 0 45px #00ffff) drop-shadow(0 0 60px #ff00ff)}
+      100%{filter:drop-shadow(0 0 30px #ffcc66) drop-shadow(0 0 45px #00ffff)}
+    }
+
+    @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    /* TEXTO CIRCULAR – FIEL A TU CÓDIGO */
     .slogan-circular{
       position:absolute;
       top:50%;
@@ -84,118 +93,108 @@
       border-radius:15px;margin:40px auto;backdrop-filter:blur(5px);
       box-shadow:0 0 25px rgba(255,255,255,0.05);
     }
+
     .bloque h3{
-      color:#ffcc66;
+      color:#ffcc66;font-size:clamp(1.6em,4vw,2.2em);
       text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff;
-      font-size:clamp(1.6em,4vw,2.2em);
       margin-bottom:15px;
     }
-    .bloque p.descripcion {
-      font-size:1.2em;color:#fff;
-      text-shadow:0 0 10px rgba(255, 204, 102, 0.7);
-      line-height:1.9;margin:18px 0;
-    }
 
-    /* ANFITRIÓN */
+    .descripcion{font-size:1.2em;color:#fff;margin:18px 0;line-height:1.9;}
+
     .anfitrion{text-align:center;padding:80px 20px;}
     .titulo-anfitrion{
       font-size:clamp(1.4em,4vw,2em);
       font-weight:700;margin-bottom:25px;
       color:#ffcc66;
       text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ffcc66;
-      letter-spacing:2px;
     }
+
     .img-anfitrion{
       width:min(90%,650px);
       border-radius:15px;
       display:block;
       margin:auto;
-      box-shadow:0 0 60px #ff00ff,0 0 90px #00ffff,0 0 120px #ffcc66;
+      box-shadow:
+        0 0 60px #ff00ff,
+        0 0 90px #00ffff,
+        0 0 120px #ffcc66,
+        0 0 160px #ff00ff;
     }
 
-    /* ⭐⭐⭐ WIDGET YOUTUBE ⭐⭐⭐ */
+    /* -----------------------------
+       🔥 NUEVO: WIDGET YOUTUBE
+    ------------------------------*/
+
     .youtube-widget{
       margin-top:40px;
-      padding:30px 15px;
-      background:rgba(0,0,0,0.6);
-      border-radius:15px;
-      box-shadow:0 0 25px #ff00ff;
+      margin-bottom:40px;
     }
 
-    .yt-header{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:15px;
-      flex-wrap:wrap;
+    .youtube-title{
+      font-size:2em;
+      color:#ffcc66;
+      text-shadow:0 0 15px #ff00ff;
+      margin-bottom:20px;
+    }
+
+    .youtube-logo{
+      width:130px;
+      border-radius:14px;
+      filter:drop-shadow(0 0 18px red);
       margin-bottom:15px;
     }
 
-    .yt-header img{
-      width:120px;
-      border-radius:12px;
-      filter:drop-shadow(0 0 15px red);
-    }
-
-    .yt-header a{
-      color:#00ffff;
-      font-size:1.8em;
-      text-decoration:none;
-      text-shadow:0 0 15px #00ffff;
-    }
-
-    .yt-sub{
-      background:#ff0000;
-      color:white;
-      padding:12px 35px;
-      border:none;
-      border-radius:30px;
-      font-size:1.3em;
-      font-weight:700;
-      cursor:pointer;
-      margin-bottom:20px;
-      box-shadow:0 0 20px #ff0000;
-    }
-
-    .video-main{
+    .main-video{
       width:100%;
       max-width:780px;
-      margin:auto;
       aspect-ratio:16/9;
+      margin:auto;
       border-radius:15px;
       overflow:hidden;
-      box-shadow:0 0 25px #00ffff;
+      box-shadow:0 0 25px #ff00ff;
     }
 
-    .video-main iframe{width:100%;height:100%;border:none;}
+    .main-video iframe{
+      width:100%;height:100%;border:none;
+    }
 
-    .thumbnails{
-      margin-top:15px;
+    .mini-videos{
+      margin-top:25px;
       display:flex;
-      justify-content:center;
       flex-wrap:wrap;
       gap:12px;
+      justify-content:center;
     }
 
-    .thumbnails img{
-      width:150px;height:85px;
+    .mini-videos img{
+      width:150px;
+      height:85px;
       border-radius:10px;
+      object-fit:cover;
       cursor:pointer;
-      border:2px solid transparent;
+      border:3px solid transparent;
       transition:.25s;
     }
 
-    .thumbnails img:hover{transform:scale(1.05);border-color:#00ffff}
-    .thumbnails img.selected{border-color:#ff00ff;box-shadow:0 0 15px #ff00ff}
+    .mini-videos img:hover{
+      transform:scale(1.05);
+      border-color:#ff00ff;
+    }
 
-    /* CONTACTO */
-    .contacto-final{text-align:center;padding:70px 20px;background:transparent;border-top:1px solid rgba(255,255,255,0.15);}
-    .contacto-final a{display:block;color:#fff;font-size:1.1em;margin:8px 0;text-decoration:none;transition:.3s;text-shadow:0 0 8px #ffcc66;}
-    .contacto-final a:hover{color:#ffcc66;text-shadow:0 0 15px #ffcc66}
+    /* 🔧 AJUSTE DE TAMAÑO SOLO PARA ÍCONOS YOUTUBE */
+    .youtube-widget img,
+    .youtube-widget .mini-videos img {
+      max-width:120px !important;
+      max-height:70px !important;
+    }
+
+    .contacto-final{text-align:center;padding:70px 20px;}
+    .contacto-final a{display:block;color:#fff;font-size:1.1em;margin:8px 0;text-decoration:none;}
 
     footer{
       background:rgba(0,0,0,0.9);
-      padding:20px;
+      padding:20px 10px;
       text-align:center;
       color:#aaa;
       font-size:.9em;
@@ -207,126 +206,94 @@
 
 <body>
 
-<div class="fondo"></div>
+  <div class="fondo"></div>
 
-<header>
-  <div class="logo-container">
-    <div class="slogan-circular" id="textoCircular"></div>
-    <img class="logo-principal" src="https://iili.io/KpcJDEG.md.png" alt="Logo TÍO SERGIO">
-  </div>
-</header>
+  <header>
+    <div class="logo-container">
+      <div class="slogan-circular" id="textoCircular"></div>
+      <img class="logo-principal" src="https://iili.io/KpcJDEG.md.png" alt="Logo TÍO SERGIO">
+    </div>
+  </header>
 
-<section class="horarios">🎶 Viernes y Sábados desde las 22:00 hs 🎶</section>
+  <section class="horarios">🎶 Viernes y Sábados desde las 22:00 hs 🎶</section>
 
+  <section class="bloque">
+    <h3>🔥 La noche es de los mayores 🔥</h3>
+    <p class="descripcion">💥 Un clásico de la noche…</p>
+    <p class="descripcion">🎶 Cumbia • Cuarteto • Rock and Roll…</p>
+    <p class="descripcion">🎉 ¡Vení a conocerlo…!</p>
+    <p class="descripcion">✨ Ambiente festivo...</p>
+    <p class="descripcion">💃🍸🎤 ¡Disfrutá con amigos!</p>
+  </section>
 
-<section class="bloque">
-  <h3>🔥 La noche es de los mayores 🔥</h3>
-  <p class="descripcion">💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.</p>
-  <p class="descripcion">🎶 Cumbia • Cuarteto • Rock and Roll • Shows en vivo.</p>
-  <p class="descripcion">🎉 ¡Vení a conocerlo, no te lo pierdas!</p>
-</section>
+  <section class="anfitrion">
+    <h3 class="titulo-anfitrion">ATENDIDO POR SU ANFITRIÓN, EL GRAN...  
+    SERGIO LEAL 😎</h3>
 
+    <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg">
+  </section>
 
-<section class="anfitrion">
-  <h3 class="titulo-anfitrion">ATENDIDO POR SU ANFITRIÓN, EL GRAN... SERGIO LEAL 😎</h3>
-  <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
-</section>
+  <!-- 🔥🔥🔥 WIDGET YOUTUBE ABAJO DEL ANFITRIÓN -->
+  <section class="youtube-widget">
 
+    <img class="youtube-logo" src="https://iili.io/fA4eRNj.jpg">
 
-<!-- ⭐⭐⭐ WIDGET YOUTUBE ⭐⭐⭐ -->
-<section class="youtube-widget">
+    <h2 class="youtube-title">SEGUINOS EN YOUTUBE</h2>
 
-  <div class="yt-header">
-    <img src="https://iili.io/fA4eRNj.jpg">
-    <a href="https://www.youtube.com/@elcanaldelasestrellasok" target="_blank">
-      SEGUINOS EN YOUTUBE
-    </a>
-  </div>
+    <button onclick="window.open('https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1','_blank')"
+      style="background:#ff0000;color:white;padding:12px 32px;border:none;font-size:1.25em;border-radius:30px;font-weight:700;cursor:pointer;margin-bottom:18px;box-shadow:0 0 18px #ff0000;">
+      🔴 SUSCRIBIRSE
+    </button>
 
-  <button class="yt-sub" onclick="window.open('https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1','_blank')">
-    🔴 SUSCRIBIRSE
-  </button>
+    <div class="main-video">
+      <iframe id="videoPrincipal" src="https://www.youtube.com/embed/Ij-lNWYQGiE"></iframe>
+    </div>
 
-  <div class="video-main">
-    <iframe id="mainVideo" src="https://www.youtube.com/embed/Ij-lNWYQGiE"></iframe>
-  </div>
+    <h3 style="margin-top:20px;font-size:1.5em;color:#ffcc66;text-shadow:0 0 10px #ff00ff;">
+      🎥 VIDEOS DESTACADOS
+    </h3>
 
-  <!-- ⭐ TÍTULO AGREGADO ACÁ ⭐ -->
-  <h3 style="
-    font-size:1.7em;
-    color:#ffcc66;
-    text-shadow:0 0 12px #ff00ff, 0 0 20px #00ffff;
-    margin:25px 0 15px;
-    font-weight:700;
-  ">
-    🎥 VIDEOS DESTACADOS
-  </h3>
+    <div class="mini-videos">
+      <img src="https://img.youtube.com/vi/Ij-lNWYQGiE/hqdefault.jpg" data-id="Ij-lNWYQGiE">
+      <img src="https://img.youtube.com/vi/kq2g8Y3lkO0/hqdefault.jpg" data-id="kq2g8Y3lkO0">
+      <img src="https://img.youtube.com/vi/gmj1ktdFOs8/hqdefault.jpg" data-id="gmj1ktdFOs8">
+      <img src="https://img.youtube.com/vi/1RWspCphiyI/hqdefault.jpg" data-id="1RWspCphiyI">
+      <img src="https://img.youtube.com/vi/g9XH1by4Uio/hqdefault.jpg" data-id="g9XH1by4Uio">
+    </div>
 
-  <div class="thumbnails">
-    <img src="https://img.youtube.com/vi/Ij-lNWYQGiE/hqdefault.jpg" data-video-id="Ij-lNWYQGiE" class="selected">
-    <img src="https://img.youtube.com/vi/kq2g8Y3lkO0/hqdefault.jpg" data-video-id="kq2g8Y3lkO0">
-    <img src="https://img.youtube.com/vi/gmj1ktdFOs8/hqdefault.jpg" data-video-id="gmj1ktdFOs8">
-    <img src="https://img.youtube.com/vi/1RWspCphiyI/hqdefault.jpg" data-video-id="1RWspCphiyI">
-    <img src="https://img.youtube.com/vi/g9XH1by4Uio/hqdefault.jpg" data-video-id="g9XH1by4Uio">
-  </div>
+  </section>
 
-</section>
+  <section class="contacto-final">
+    <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
+    <a href="tel:+541123272061">📞 11 2327-2061</a>
+    <a href="https://maps.google.com/?q=Av.+Pres.+Art.+Umberto+Illia+6829" target="_blank">📍 Ubicación</a>
+  </section>
 
+  <footer>
+    © 2025 TÍO SERGIO | Diseñado por 
+    <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
+  </footer>
 
-<section class="contacto-final">
-  <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
-  <a href="tel:+541123272061">📞 11 2327-2061</a>
-  <a href="#" target="_blank">📍 José C. Paz, Buenos Aires</a>
-  <div class="redes-local">
-    <a href="https://www.instagram.com/tiosergio935/" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-    </a>
-    <a href="https://wa.me/541123272061" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-    </a>
-  </div>
-</section>
+  <script>
+    /* TEXTO CIRCULAR */
+    const txt = "EL LUGAR DE LOS MAYORES ✦ ";
+    const cont = document.getElementById("textoCircular");
+    for(let i=0;i<txt.length;i++){
+      const s=document.createElement("span");
+      s.innerText=txt[i];
+      s.style.transform=`rotate(${(i*360)/txt.length}deg)`;
+      cont.appendChild(s);
+    }
 
-<section class="final-fomo">
-  🔥 ¡<span>Te esperamos este fin de semana</span> en <span>TÍO SERGIO</span>!
-</section>
+    /* APARICIÓN SUAVE */
+    const secs=document.querySelectorAll("section");
+    const show=()=>{secs.forEach(s=>{if(s.getBoundingClientRect().top<window.innerHeight-80)s.classList.add("visible")})};
+    window.addEventListener("scroll",show);show();
 
-<footer>
-  © 2025 TÍO SERGIO | Diseñado por 
-  <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
-</footer>
-
-<script>
-  /* Texto circular */
-  const texto="EL LUGAR DE LOS MAYORES ✦ ";
-  const cont=document.getElementById("textoCircular");
-  for(let i=0;i<texto.length;i++){
-    const letra=document.createElement("span");
-    letra.innerText=texto[i];
-    letra.style.transform=`rotate(${(i * 360) / texto.length}deg)`;
-    cont.appendChild(letra);
-  }
-
-  /* Animación secciones */
-  const secciones=document.querySelectorAll("section");
-  const mostrar=()=>{
-    secciones.forEach(sec=>{
-      const pos=sec.getBoundingClientRect().top;
-      if(pos < window.innerHeight - 100) sec.classList.add("visible");
+    /* CAMBIO DE VIDEO */
+    document.querySelectorAll(".mini-videos img").forEach(el=>{
+      el.onclick=()=>{document.getElementById("videoPrincipal").src="https://www.youtube.com/embed/"+el.dataset.id};
     });
-  };
-  window.addEventListener("scroll",mostrar);
-  mostrar();
-
-  /* Cambiar video */
-  document.querySelectorAll('.thumbnails img').forEach(t=>{
-    t.addEventListener('click',()=>{
-      document.getElementById('mainVideo').src='https://www.youtube.com/embed/' + t.dataset.videoId;
-      document.querySelectorAll('.thumbnails img').forEach(x=>x.classList.remove('selected'));
-      t.classList.add('selected');
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>
