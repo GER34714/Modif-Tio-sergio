@@ -130,19 +130,43 @@
       100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
     }
 
-    /* 🔥 WIDGET YOUTUBE — fiel al estilo */
-    .youtube-widget{
-      margin-top:40px;
-      margin-bottom:40px;
+    /* 🔒 ICONOS DE REDES RESTAURADOS (55x55) */
+    .redes-local a img {
+      width:55px !important;
+      height:55px !important;
+      object-fit:contain !important;
+      border-radius:0 !important;
+      transition:.3s ease;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));
     }
 
-    .youtube-widget .yt-logo{
+    /* 🌐 Sección contacto acomodada */
+    .contacto-final {
+      text-align:center;
+      padding:70px 20px;
+    }
+    .contacto-final a {
+      display:block;
+      font-size:1.15em;
+      margin:6px 0;
+      color:#fff;
+      text-decoration:none;
+      text-shadow:0 0 8px #ffcc66;
+    }
+    .contacto-final a:hover {
+      color:#ffcc66;
+    }
+
+    /* 🎬 WIDGET YOUTUBE AISLADO */
+    .youtube-area { margin-top:40px; margin-bottom:40px; }
+
+    .youtube-area .yt-logo{
       width:95px;
       filter:drop-shadow(0 0 14px red);
       border-radius:10px;
     }
 
-    .youtube-widget .video-main{
+    .youtube-area .video-main{
       width:100%;
       max-width:720px;
       aspect-ratio:16/9;
@@ -152,34 +176,30 @@
       box-shadow:0 0 22px #ff00ff;
     }
 
-    .youtube-widget .video-main iframe{
+    .youtube-area .video-main iframe{
       width:100%;height:100%;border:none;
     }
 
-    .youtube-widget .thumbnails{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:20px;
+    .youtube-area .thumbnails{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin-top:20px;
     }
 
-    .youtube-widget .thumbnails img{
-      width:120px !important;
-      height:70px !important;
+    .youtube-area .thumbnails img{
+      width:120px;
+      height:70px;
       border-radius:8px;
       object-fit:cover;
       cursor:pointer;
       transition:.25s;
       border:2px solid transparent;
     }
-    .youtube-widget .thumbnails img:hover{
+    .youtube-area .thumbnails img:hover{
       transform:scale(1.05);
       border-color:#ff00ff;
-    }
-
-    @media(max-width:600px){
-      .youtube-widget .yt-logo{width:70px}
-      .youtube-widget .thumbnails img{
-        width:100px !important;
-        height:60px !important;
-      }
     }
 
     footer{
@@ -223,8 +243,8 @@
     <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
   </section>
 
-  <!-- 🔥 WIDGET YOUTUBE AGREGADO EXACTAMENTE COMO PEDISTE -->
-  <section class="youtube-widget">
+  <!-- 🎬 WIDGET YOUTUBE -->
+  <section class="youtube-area">
 
     <h2 style="font-size:2em;color:#ffcc66;text-shadow:0 0 20px #ff00ff;margin-bottom:10px;">
       ⭐ SEGUINOS EN YOUTUBE ⭐
@@ -276,7 +296,7 @@
     </div>
   </section>
 
-  <!-- ⭐ FRASE AGREGADA ANTES DEL FOOTER (Opción 1) -->
+  <!-- ⭐ FRASE FINAL -->
   <section class="frase-final">
     <p style="
       font-size:1.3em;
