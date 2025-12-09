@@ -48,7 +48,7 @@
       position:relative;z-index:2;
     }
 
-    /* 🔥 TEXTO CIRCULAR CORREGIDO */
+    /* 🔥 TEXTO CIRCULAR */
     .slogan-circular{
       position:absolute;
       top:50%;
@@ -115,9 +115,16 @@
         0 0 90px #00ffff,
         0 0 120px #ffcc66,
         0 0 160px #ff00ff;
+      animation:pulsoMulti 5s infinite ease-in-out;
     }
 
-    /* ⭐⭐⭐ WIDGET YOUTUBE (idéntico a Radio Imagen) ⭐⭐⭐ */
+    @keyframes pulsoMulti{
+      0%{box-shadow:0 0 50px #ff00ff,0 0 80px #00ffff,0 0 100px #ffcc66}
+      50%{box-shadow:0 0 90px #ff00ff,0 0 140px #00ffff,0 0 180px #ffcc66}
+      100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
+    }
+
+    /* ⭐⭐⭐ WIDGET YOUTUBE ⭐⭐⭐ */
     .youtube-widget{
       margin-top:40px;
       padding:30px 15px;
@@ -171,9 +178,7 @@
       box-shadow:0 0 25px #00ffff;
     }
 
-    .video-main iframe{
-      width:100%;height:100%;border:none;
-    }
+    .video-main iframe{width:100%;height:100%;border:none;}
 
     .thumbnails{
       margin-top:20px;
@@ -202,7 +207,16 @@
     .redes-local{display:flex;justify-content:center;gap:35px;margin-top:20px}
     .redes-local a img{width:55px;height:55px;transition:all .3s ease;}
 
-    footer{background:rgba(0,0,0,0.9);padding:20px;text-align:center;color:#aaa;font-size:.9em;}
+    /* FOOTER */
+    footer{
+      background:rgba(0,0,0,0.9);
+      padding:20px;
+      text-align:center;
+      color:#aaa;
+      font-size:.9em;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+    footer a{color:#00ffff;text-decoration:none}
   </style>
 </head>
 
@@ -223,6 +237,7 @@
   <h3>🔥 La noche es de los mayores 🔥</h3>
   <p class="descripcion">💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.</p>
   <p class="descripcion">🎶 Cumbia • Cuarteto • Rock and Roll • Shows en vivo.</p>
+  <p class="descripcion">🎉 ¡Vení a conocerlo, no te lo pierdas!</p>
 </section>
 
 <section class="anfitrion">
@@ -230,7 +245,7 @@
   <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
 </section>
 
-<!-- ⭐⭐⭐ BLOQUE YOUTUBE INSERTADO AQUÍ ⭐⭐⭐ -->
+<!-- ⭐⭐⭐ WIDGET YOUTUBE ⭐⭐⭐ -->
 <section class="youtube-widget">
 
   <div class="yt-header">
@@ -262,6 +277,14 @@
   <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
   <a href="tel:+541123272061">📞 11 2327-2061</a>
   <a href="#" target="_blank">📍 José C. Paz, Buenos Aires</a>
+  <div class="redes-local">
+    <a href="https://www.instagram.com/tiosergio935/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+    </a>
+    <a href="https://wa.me/541123272061" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+    </a>
+  </div>
 </section>
 
 <section class="final-fomo">
@@ -269,13 +292,14 @@
 </section>
 
 <footer>
-  © 2025 TÍO SERGIO | Diseñado por Ciborg 347™
+  © 2025 TÍO SERGIO | Diseñado por 
+  <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
 </footer>
 
 <script>
   /* Texto circular */
-  const texto = "EL LUGAR DE LOS MAYORES ✦ ";
-  const cont = document.getElementById("textoCircular");
+  const texto="EL LUGAR DE LOS MAYORES ✦ ";
+  const cont=document.getElementById("textoCircular");
   for(let i=0;i<texto.length;i++){
     const letra=document.createElement("span");
     letra.innerText=texto[i];
@@ -288,7 +312,7 @@
   const mostrar=()=>{
     secciones.forEach(sec=>{
       const pos=sec.getBoundingClientRect().top;
-      if(pos < window.innerHeight - 100){ sec.classList.add("visible"); }
+      if(pos < window.innerHeight - 100) sec.classList.add("visible");
     });
   };
   window.addEventListener("scroll",mostrar);
