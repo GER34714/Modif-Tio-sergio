@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TÍO SERGIO | El lugar de los mayores 🎶</title>
+  <meta name="description" content="Bailanta, música, tragos y diversión. Viernes y sábados desde las 22:00 hs en José C. Paz. ¡Viví la noche con TÍO SERGIO™!" />
+
+  <link rel="icon" type="image/png" href="https://iili.io/KmWWSnV.md.webp" />
+  <meta property="og:title" content="TÍO SERGIO™ | El lugar de los mayores 🎤💃" />
+  <meta property="og:description" content="Cumbia• Cuarteto•rock and roll• Shows en vivo y la mejor energía de la noche. Viernes y sábados desde las 22:00 hs en José C. Paz." />
+  <meta property="og:image" content="https://iili.io/KpcsxCN.md.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tio-sergio.onrender.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TÍO SERGIO™ | El lugar de los mayores 🎶" />
+  <meta name="twitter:description" content="Un clásico de la noche. Música, tragos y buena compañía. ¡Vení a disfrutar la noche con TÍO SERGIO™!" />
+  <meta name="twitter:image" content="https://iili.io/KpcsxCN.md.jpg" />
+  <link rel="preload" as="image" href="https://iili.io/KpcsxCN.md.jpg">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{scroll-behavior:smooth;overflow-x:hidden}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:radial-gradient(ellipse at center,#1a0f0a 0%,#000 85%);
+      color:#fff;line-height:1.6;text-align:center;
+    }
+    .fondo{
+      position:fixed;inset:0;z-index:-1;
+      background:url('https://iili.io/KmM0LyN.md.jpg') center/cover no-repeat;
+      filter:brightness(0.7);
+      animation:reflejo 10s ease-in-out infinite alternate;
+    }
+    @keyframes reflejo{
+      0%{filter:brightness(0.7)saturate(1.1)}
+      50%{filter:brightness(0.85)saturate(1.4)}
+      100%{filter:brightness(0.7)saturate(1.1)}
+    }
+
+    header{
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;text-align:center;
+      padding:80px 20px 40px;
+      background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);
+    }
+
+    .logo-container{position:relative;display:inline-block;margin-top:50px;animation:floatLogo 6s ease-in-out infinite;}
+    .logo-principal{
+      width:clamp(260px,55vw,440px);
+      border-radius:50%;
+      filter:drop-shadow(0 0 25px #fff);
+      position:relative;z-index:2;
+      animation:neonLoop 5s linear infinite;
+    }
+
+    @keyframes neonLoop{
+      0%{filter:drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 45px #00ffff)}
+      25%{filter:drop-shadow(0 0 40px #ffcc66) drop-shadow(0 0 60px #00ffff)}
+      50%{filter:drop-shadow(0 0 60px #ff00ff) drop-shadow(0 0 80px #ffcc66)}
+      75%{filter:drop-shadow(0 0 45px #00ffff) drop-shadow(0 0 60px #ff00ff)}
+      100%{filter:drop-shadow(0 0 30px #ffcc66) drop-shadow(0 0 45px #00ffff)}
+    }
+
+    @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    .slogan-circular{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:500px;height:500px;border-radius:50%;
+      pointer-events:none;z-index:1;
+    }
+    .slogan-circular span{
+      position:absolute;left:50%;top:0;
+      transform-origin:0 250px;
+      font-size:1.1em;font-weight:600;color:#fff;
+      text-shadow:0 0 10px #ffcc66,0 0 20px #ff00ff,0 0 30px #00ffff;
+    }
+
+    section{text-align:center;padding:40px 20px;max-width:900px;margin:0 auto;opacity:0;transform:translateY(50px);transition:all 1s ease}
+    section.visible{opacity:1;transform:translateY(0)}
+
+    .horarios{
+      font-size:1.4em;margin-top:15px;color:#fff;
+      text-shadow:0 0 15px #ff6600,0 0 25px #ffcc66;
+    }
+
+    .bloque{
+      padding:45px 25px;background:rgba(0,0,0,0.65);
+      border-radius:15px;margin:40px auto;backdrop-filter:blur(5px);
+      box-shadow:0 0 25px rgba(255,255,255,0.05);
+    }
+    .bloque h3{
+      color:#ffcc66;
+      text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff;
+      font-size:clamp(1.6em,4vw,2.2em);
+      margin-bottom:15px;
+    }
+    .bloque p.descripcion {
+      font-size:1.2em;color:#fff;
+      text-shadow:0 0 10px rgba(255, 204, 102, 0.7);
+      line-height:1.9;margin:18px 0;
+    }
+
+    /* 💥 Imagen anfitrión con neón más intenso */
+    .anfitrion{text-align:center;padding:80px 20px;}
+    .titulo-anfitrion{
+      font-size:clamp(1.4em,4vw,2em);
+      font-weight:700;margin-bottom:25px;
+      color:#ffcc66;
+      text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ffcc66;
+      letter-spacing:2px;
+    }
+    .img-anfitrion{
+      width:min(90%,650px);
+      border-radius:15px;
+      display:block;
+      margin:auto;
+      box-shadow:
+        0 0 60px #ff00ff,
+        0 0 90px #00ffff,
+        0 0 120px #ffcc66,
+        0 0 160px #ff00ff;
+      animation:pulsoMulti 5s infinite ease-in-out;
+    }
+    @keyframes pulsoMulti{
+      0%{box-shadow:0 0 50px #ff00ff,0 0 80px #00ffff,0 0 100px #ffcc66}
+      50%{box-shadow:0 0 90px #ff00ff,0 0 140px #00ffff,0 0 180px #ffcc66}
+      100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
+    }
+
+    .contacto-final{text-align:center;padding:70px 20px;background:transparent;border-top:1px solid rgba(255,255,255,0.15);}
+    .contacto-final a{display:block;color:#fff;font-size:1.1em;margin:8px 0;text-decoration:none;transition:.3s;text-shadow:0 0 8px #ffcc66;}
+    .contacto-final a:hover{color:#ffcc66;text-shadow:0 0 15px #ffcc66}
+    .redes-local{display:flex;justify-content:center;gap:35px;margin-top:20px}
+    .redes-local a img{width:55px;height:55px;transition:all .3s ease;filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));}
+    .redes-local a img:hover{transform:scale(1.15);filter:drop-shadow(0 0 20px #00ffff) drop-shadow(0 0 35px #ff00ff);}
+
+    .final-fomo{
+      text-align:center;
+      padding:60px 20px;
+      background:transparent;
+      font-size:1.5em;
+      color:#ffcc66;
+      text-shadow:0 0 25px #ff00ff,0 0 45px #00ffff;
+      font-weight:600;
+      animation:brillaFomo 3s infinite ease-in-out;
+    }
+    .final-fomo span{
+      display:inline-block;
+      color:#ffdf7f;
+      text-shadow:0 0 20px #ffcc66,0 0 40px #ff6600;
+      animation:brilloLetra 2s infinite linear;
+    }
+    @keyframes brilloLetra{0%{opacity:1}50%{opacity:0.6;filter:brightness(1.5)}100%{opacity:1}}
+    @keyframes brillaFomo{0%,100%{text-shadow:0 0 25px #ffcc66,0 0 45px #00ffff;}50%{text-shadow:0 0 40px #ff00ff,0 0 60px #ffcc66;}}
+
+    footer{background:rgba(0,0,0,0.9);padding:20px 10px;text-align:center;color:#aaa;font-size:.9em;border-top:1px solid rgba(255,255,255,0.1);letter-spacing:.5px;}
+    footer a{color:#00ffff;text-decoration:none;transition:.3s}
+    footer a:hover{color:#ffcc66}
+
+    @media(max-width:600px){
+      .logo-principal{width:280px}
+      .slogan-circular{width:340px;height:340px}
+      .slogan-circular span{font-size:.9em;transform-origin:0 170px}
+      .titulo-anfitrion{font-size:1.3em}
+      .final-fomo{font-size:1.2em;line-height:1.8}
+      .final-fomo br{display:block}
+      .horarios{font-size:1.1em;white-space:nowrap}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fondo"></div>
+
+  <header>
+    <div class="logo-container">
+      <div class="slogan-circular" id="textoCircular"></div>
+      <img class="logo-principal" src="https://iili.io/KpcJDEG.md.png" alt="Logo TÍO SERGIO">
+    </div>
+  </header>
+
+  <section class="horarios">🎶 Viernes y Sábados desde las 22:00 hs 🎶</section>
+
+  <section class="bloque">
+    <h3>🔥 La noche es de los mayores 🔥</h3>
+
+    <p class="descripcion">💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.</p>
+    <p class="descripcion">🎶 Cumbia • Cuarteto • rock and Roll Shows en vivo de bandas tropicales nacionales e internacionales.</p>
+    <p class="descripcion">🎉 ¡Vení a conocerlo, no te lo pierdas!</p>
+    <p class="descripcion">✨ Ambiente festivo, buena música, luces que te envuelven y la mejor energía de la mano del queridísimo SERGIO LEAL👉🏻 <strong>TÍO SERGIO™</strong>.</p>
+    <p class="descripcion">💃🍸🎤 ¡Disfrutá con amigos una noche distinta, hecha y pensada para vos!</p>
+  </section>
+
+  <section class="anfitrion">
+    <h3 class="titulo-anfitrion">ATENDIDO POR SU ANFITRIÓN, EL GRAN...
+SERGIO LEAL 😎</h3>
+    <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
+  </section>
+
+  <section class="contacto-final">
+    <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
+    <a href="tel:+541123272061">📞 11 2327-2061</a>
+    <a href="https://maps.google.com/?q=Av.+Pres.+Art.+Umberto+Illia+6829,+José+C.+Paz,+Bs.+As." target="_blank">📍 Av. Pres. Art. Umberto Illia 6829, José C. Paz, Bs. As.</a>
+    <div class="redes-local">
+      <a href="https://www.instagram.com/tiosergio935/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+      </a>
+      <a href="https://wa.me/541123272061" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+    </div>
+  </section>
+
+  <section class="final-fomo">
+    🔥 ¡<span>Te esperamos este fin de semana</span> en <span>TÍO SERGIO</span>!<br>
+    💃 La noche más esperada está por comenzar... 🎶
+  </section>
+
+  <footer>
+    © 2025 TÍO SERGIO | Todos los derechos reservados.<br>
+    Diseñado por <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
+  </footer>
+
+  <script>
+    const texto = "EL LUGAR DE LOS MAYORES ✦ ";
+    const contenedor = document.getElementById("textoCircular");
+    for (let i = 0; i < texto.length; i++) {
+      const letra = document.createElement("span");
+      letra.innerText = texto[i];
+      letra.style.transform = `rotate(${(i * 360) / texto.length}deg)`;
+      contenedor.appendChild(letra);
+    }
+
+    const secciones = document.querySelectorAll("section");
+    const mostrar = () => {
+      secciones.forEach(sec=>{
+        const pos = sec.getBoundingClientRect().top;
+        if(pos < window.innerHeight - 100){ sec.classList.add("visible"); }
+      });
+    };
+    window.addEventListener("scroll", mostrar);
+    mostrar();
+  </script>
+
+</body>
+</html>
