@@ -69,7 +69,6 @@
 
     @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-    /* TEXTO CIRCULAR POR FUERA DEL LOGO */
     .slogan-circular{
       position:absolute;top:50%;left:50%;
       transform:translate(-50%, -50%);
@@ -139,7 +138,6 @@
       100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
     }
 
-    /* EVENTO HOY */
     .evento-hoy{
       max-width:980px;
       margin:20px auto 10px;
@@ -216,7 +214,6 @@
       box-shadow:0 0 22px rgba(0,153,255,.7);
     }
 
-    /* ICONOS DE REDES (55x55) */
     .redes-local{
       margin-top:12px;
       display:flex;
@@ -234,7 +231,6 @@
       filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));
     }
 
-    /* Seccion contacto */
     .contacto-final {
       text-align:center;
       padding:70px 20px;
@@ -251,7 +247,7 @@
       color:#ffcc66;
     }
 
-    /* YOUTUBE: SOLO PLAYER GRANDE + GRILLA */
+    /* YOUTUBE: 1 GRANDE + CARDS ABAJO */
     .youtube-area { margin-top:40px; margin-bottom:40px; max-width:1100px; }
     .youtube-area .yt-logo{
       width:95px;
@@ -260,7 +256,7 @@
     }
     .youtube-area .video-main{
       width:100%;
-      max-width:860px;
+      max-width:900px;
       aspect-ratio:16/9;
       margin:24px auto 0;
       border-radius:16px;
@@ -274,26 +270,75 @@
       border:none;
     }
 
-    .yt-grid{
-      margin:24px auto 0;
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
+    .yt-cards-wrap{
       width:100%;
       max-width:980px;
+      margin:18px auto 0;
     }
-    .yt-item{
-      background:rgba(0,0,0,0.45);
+    .yt-cards-title{
+      font-size:1.05em;
+      color:#fff;
+      margin-bottom:12px;
+      text-shadow:0 0 10px rgba(255,255,255,.2);
+    }
+    .yt-cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .yt-card{
+      background:rgba(0,0,0,0.55);
+      border:1px solid rgba(255,255,255,0.08);
       border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 0 12px rgba(255,0,255,0.18);
-      border:1px solid rgba(255,255,255,0.06);
+      padding:14px 12px;
+      text-align:left;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:0 0 10px rgba(255,0,255,0.12);
     }
-    .yt-item iframe{
-      width:100%;
-      aspect-ratio:16/9;
-      border:none;
+    .yt-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 16px rgba(255,0,255,0.25);
+      border-color:rgba(255,204,102,0.28);
+    }
+    .yt-card.active{
+      border-color:rgba(255,204,102,0.65);
+      box-shadow:0 0 20px rgba(255,204,102,0.2),0 0 20px rgba(255,0,255,0.14);
+      background:rgba(255,255,255,0.03);
+    }
+    .yt-card .nro{
+      display:inline-flex;
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:8px;
+      font-weight:700;
+      background:rgba(255,0,0,.2);
+      border:1px solid rgba(255,0,0,.35);
+      color:#fff;
+    }
+    .yt-card .titulo{
       display:block;
+      font-weight:700;
+      color:#ffcc66;
+      line-height:1.25;
+      font-size:.98em;
+      margin-bottom:5px;
+    }
+    .yt-card .sub{
+      display:block;
+      color:#ddd;
+      font-size:.88em;
+      line-height:1.25;
+      opacity:.95;
+    }
+    .yt-note{
+      margin-top:10px;
+      font-size:.85em;
+      color:#cfcfcf;
+      opacity:.9;
     }
 
     footer{
@@ -307,11 +352,12 @@
     footer a:hover{color:#ffcc66}
 
     @media (max-width: 900px){
-      .yt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .yt-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width: 560px){
-      .yt-grid{grid-template-columns:1fr}
+      .yt-cards{grid-template-columns:1fr}
       .evento-lista{text-align:center}
+      .yt-card{text-align:center}
     }
   </style>
 </head>
@@ -344,7 +390,6 @@
     <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
   </section>
 
-  <!-- EVENTO DE HOY -->
   <section class="evento-hoy">
     <div class="evento-card">
       <div class="evento-badge">HOY - DOMINGO 22 DE FEBRERO</div>
@@ -366,9 +411,7 @@
     </div>
   </section>
 
-  <!-- YOUTUBE: PLAYER PRINCIPAL + 6 VIDEOS -->
   <section class="youtube-area">
-
     <h2 style="font-size:2em;color:#ffcc66;text-shadow:0 0 20px #ff00ff;margin-bottom:10px;">
       ⭐ SEGUINOS EN YOUTUBE ⭐
     </h2>
@@ -382,9 +425,12 @@
       🔴 SUSCRIBIRSE
     </button>
 
+    <!-- ULTIMO (GRANDE) -->
     <div class="video-main">
       <iframe
+        id="ytPrincipal"
         src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=1"
+        title="Video principal del canal"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
         playsinline
@@ -392,62 +438,50 @@
       </iframe>
     </div>
 
-    <div class="yt-grid">
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=1"
-          title="Video 1 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
+    <!-- CARDS ORDENADAS (1 AL 6) -->
+    <div class="yt-cards-wrap">
+      <p class="yt-cards-title">Selecciona uno de los ultimos videos del canal:</p>
+
+      <div class="yt-cards" id="ytCards">
+        <button class="yt-card active" type="button" data-index="1">
+          <span class="nro">1</span>
+          <span class="titulo">Ultimo video</span>
+          <span class="sub">Se muestra grande arriba</span>
+        </button>
+
+        <button class="yt-card" type="button" data-index="2">
+          <span class="nro">2</span>
+          <span class="titulo">Video reciente #2</span>
+          <span class="sub">Click para verlo arriba</span>
+        </button>
+
+        <button class="yt-card" type="button" data-index="3">
+          <span class="nro">3</span>
+          <span class="titulo">Video reciente #3</span>
+          <span class="sub">Click para verlo arriba</span>
+        </button>
+
+        <button class="yt-card" type="button" data-index="4">
+          <span class="nro">4</span>
+          <span class="titulo">Video reciente #4</span>
+          <span class="sub">Click para verlo arriba</span>
+        </button>
+
+        <button class="yt-card" type="button" data-index="5">
+          <span class="nro">5</span>
+          <span class="titulo">Video reciente #5</span>
+          <span class="sub">Click para verlo arriba</span>
+        </button>
+
+        <button class="yt-card" type="button" data-index="6">
+          <span class="nro">6</span>
+          <span class="titulo">Video reciente #6</span>
+          <span class="sub">Click para verlo arriba</span>
+        </button>
       </div>
 
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=2"
-          title="Video 2 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=3"
-          title="Video 3 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=4"
-          title="Video 4 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=5"
-          title="Video 5 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="yt-item">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=6"
-          title="Video 6 del canal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <p class="yt-note">Los cards de abajo cambian el video principal usando la playlist de subidas del canal (sin API y sin mantenimiento).</p>
     </div>
-
   </section>
 
   <section class="contacto-final">
@@ -500,6 +534,25 @@
     };
     window.addEventListener("scroll", mostrar);
     mostrar();
+
+    // YouTube: 1 grande + cards abajo (indices de la playlist Uploads)
+    const PLAYLIST_UPLOADS = "UURKCN_xpraIbiZU91kXA94w";
+    const iframePrincipal = document.getElementById("ytPrincipal");
+    const cards = document.querySelectorAll(".yt-card");
+
+    function cargarVideoPorIndice(index){
+      iframePrincipal.src = "https://www.youtube.com/embed/videoseries?list=" + PLAYLIST_UPLOADS + "&index=" + index;
+      cards.forEach(c => c.classList.remove("active"));
+      const activo = document.querySelector('.yt-card[data-index="' + index + '"]');
+      if (activo) activo.classList.add("active");
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        const idx = card.getAttribute("data-index");
+        cargarVideoPorIndice(idx);
+      });
+    });
   </script>
 
 </body>
