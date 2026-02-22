@@ -139,7 +139,92 @@
       100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
     }
 
+    /* EVENTO HOY */
+    .evento-hoy{
+      max-width:980px;
+      margin:20px auto 10px;
+      padding:20px;
+    }
+    .evento-card{
+      background:rgba(0,0,0,0.7);
+      border-radius:18px;
+      padding:22px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 0 30px rgba(255,255,255,0.06);
+    }
+    .evento-badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ff0000,#ff6600);
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.6px;
+      box-shadow:0 0 18px rgba(255,0,0,.6);
+      margin-bottom:14px;
+    }
+    .evento-card h3{
+      color:#ffcc66;
+      font-size:clamp(1.5em,4vw,2.1em);
+      text-shadow:0 0 10px #ff00ff,0 0 16px #00ffff;
+      margin-bottom:10px;
+    }
+    .evento-card p{
+      margin:8px 0;
+      font-size:1.05em;
+      text-shadow:0 0 10px rgba(255,255,255,0.12);
+    }
+    .evento-img{
+      width:100%;
+      max-width:760px;
+      display:block;
+      margin:18px auto 14px;
+      border-radius:14px;
+      box-shadow:0 0 20px rgba(255,204,102,.4),0 0 35px rgba(255,0,255,.18);
+    }
+    .evento-lista{
+      display:grid;
+      gap:8px;
+      margin:14px auto;
+      max-width:760px;
+      text-align:left;
+    }
+    .evento-lista p{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:12px;
+      padding:10px 12px;
+      margin:0;
+    }
+    .evento-cta{
+      margin-top:16px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 22px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      background:linear-gradient(90deg,#00aaff,#0066ff);
+      box-shadow:0 0 18px rgba(0,153,255,.45);
+      transition:.25s ease;
+    }
+    .evento-cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 22px rgba(0,153,255,.7);
+    }
+
     /* ICONOS DE REDES (55x55) */
+    .redes-local{
+      margin-top:12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
     .redes-local a img {
       width:55px !important;
       height:55px !important;
@@ -166,8 +251,8 @@
       color:#ffcc66;
     }
 
-    /* YOUTUBE: SOLO PLAYER GRANDE (NO GIGANTE) */
-    .youtube-area { margin-top:40px; margin-bottom:40px; }
+    /* YOUTUBE: SOLO PLAYER GRANDE + GRILLA */
+    .youtube-area { margin-top:40px; margin-bottom:40px; max-width:1100px; }
     .youtube-area .yt-logo{
       width:95px;
       filter:drop-shadow(0 0 14px red);
@@ -189,6 +274,28 @@
       border:none;
     }
 
+    .yt-grid{
+      margin:24px auto 0;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      width:100%;
+      max-width:980px;
+    }
+    .yt-item{
+      background:rgba(0,0,0,0.45);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 0 12px rgba(255,0,255,0.18);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .yt-item iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      border:none;
+      display:block;
+    }
+
     footer{
       background:rgba(0,0,0,0.9);
       padding:20px 10px;text-align:center;
@@ -198,6 +305,14 @@
     }
     footer a{color:#00ffff;text-decoration:none;transition:.3s}
     footer a:hover{color:#ffcc66}
+
+    @media (max-width: 900px){
+      .yt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .yt-grid{grid-template-columns:1fr}
+      .evento-lista{text-align:center}
+    }
   </style>
 </head>
 <body>
@@ -229,7 +344,29 @@
     <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
   </section>
 
-  <!-- YOUTUBE: SOLO PLAYER (AUTO CON PLAYLIST UPLOADS) -->
+  <!-- EVENTO DE HOY -->
+  <section class="evento-hoy">
+    <div class="evento-card">
+      <div class="evento-badge">HOY - DOMINGO 22 DE FEBRERO</div>
+      <h3>Gran fiesta santiagueña</h3>
+      <p>Invita y organiza <strong>Angel Moreno</strong> junto a <strong>Tio Sergio</strong>.</p>
+
+      <img class="evento-img" src="https://iili.io/qF5knXn.jpg" alt="Flyer evento de hoy en Tio Sergio">
+
+      <div class="evento-lista">
+        <p>✅ Entrada sin cargo para disfrutar en familia</p>
+        <p>🎧 DJ Montoya y mas artistas invitados</p>
+        <p>🎤 Wally Nogueras, Carla Gonzalez y La Chance Chamamecera</p>
+        <p>📍 Av. Arturo Illia 6829, Jose C. Paz (a 1 cuadra del cruce)</p>
+      </div>
+
+      <a class="evento-cta" href="https://maps.google.com/?q=Av.+Pres.+Art.+Umberto+Illia+6829,+José+C.+Paz,+Bs.+As." target="_blank" rel="noopener noreferrer">
+        📍 Ver ubicacion en el mapa
+      </a>
+    </div>
+  </section>
+
+  <!-- YOUTUBE: PLAYER PRINCIPAL + 6 VIDEOS -->
   <section class="youtube-area">
 
     <h2 style="font-size:2em;color:#ffcc66;text-shadow:0 0 20px #ff00ff;margin-bottom:10px;">
@@ -247,11 +384,68 @@
 
     <div class="video-main">
       <iframe
-        src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w"
-        allow="encrypted-media"
+        src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
         playsinline
         webkit-playsinline>
       </iframe>
+    </div>
+
+    <div class="yt-grid">
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=1"
+          title="Video 1 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=2"
+          title="Video 2 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=3"
+          title="Video 3 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=4"
+          title="Video 4 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=5"
+          title="Video 5 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="yt-item">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=6"
+          title="Video 6 del canal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
 
   </section>
