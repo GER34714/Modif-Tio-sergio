@@ -247,7 +247,7 @@
       color:#ffcc66;
     }
 
-    /* YOUTUBE: 1 GRANDE + CARDS ABAJO */
+    /* YOUTUBE: ULTIMO GRANDE + CARDS ABAJO */
     .youtube-area { margin-top:40px; margin-bottom:40px; max-width:1100px; }
     .youtube-area .yt-logo{
       width:95px;
@@ -333,12 +333,7 @@
       font-size:.88em;
       line-height:1.25;
       opacity:.95;
-    }
-    .yt-note{
-      margin-top:10px;
-      font-size:.85em;
-      color:#cfcfcf;
-      opacity:.9;
+      word-break:break-word;
     }
 
     footer{
@@ -425,11 +420,10 @@
       🔴 SUSCRIBIRSE
     </button>
 
-    <!-- ULTIMO (GRANDE) -->
     <div class="video-main">
       <iframe
         id="ytPrincipal"
-        src="https://www.youtube.com/embed/videoseries?list=UURKCN_xpraIbiZU91kXA94w&index=1"
+        src="https://www.youtube.com/embed/HQWMW2Bl39Q"
         title="Video principal del canal"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
@@ -438,49 +432,40 @@
       </iframe>
     </div>
 
-    <!-- CARDS ORDENADAS (1 AL 6) -->
     <div class="yt-cards-wrap">
-      <p class="yt-cards-title">Selecciona uno de los ultimos videos del canal:</p>
+      <p class="yt-cards-title">Videos seleccionados del canal (ultimo grande arriba):</p>
 
       <div class="yt-cards" id="ytCards">
-        <button class="yt-card active" type="button" data-index="1">
+        <button class="yt-card active" type="button" data-video="HQWMW2Bl39Q">
           <span class="nro">1</span>
-          <span class="titulo">Ultimo video</span>
-          <span class="sub">Se muestra grande arriba</span>
+          <span class="titulo">Video 1 (principal)</span>
+          <span class="sub">HQWMW2Bl39Q</span>
         </button>
 
-        <button class="yt-card" type="button" data-index="2">
+        <button class="yt-card" type="button" data-video="4CDES6EPZkI">
           <span class="nro">2</span>
-          <span class="titulo">Video reciente #2</span>
-          <span class="sub">Click para verlo arriba</span>
+          <span class="titulo">Video 2</span>
+          <span class="sub">4CDES6EPZkI</span>
         </button>
 
-        <button class="yt-card" type="button" data-index="3">
+        <button class="yt-card" type="button" data-video="Ik1PLRYR7j4">
           <span class="nro">3</span>
-          <span class="titulo">Video reciente #3</span>
-          <span class="sub">Click para verlo arriba</span>
+          <span class="titulo">Video 3</span>
+          <span class="sub">Ik1PLRYR7j4</span>
         </button>
 
-        <button class="yt-card" type="button" data-index="4">
+        <button class="yt-card" type="button" data-video="c-B_nCG_S7k">
           <span class="nro">4</span>
-          <span class="titulo">Video reciente #4</span>
-          <span class="sub">Click para verlo arriba</span>
+          <span class="titulo">Video 4</span>
+          <span class="sub">c-B_nCG_S7k</span>
         </button>
 
-        <button class="yt-card" type="button" data-index="5">
+        <button class="yt-card" type="button" data-video="5P2tqlF85eE">
           <span class="nro">5</span>
-          <span class="titulo">Video reciente #5</span>
-          <span class="sub">Click para verlo arriba</span>
-        </button>
-
-        <button class="yt-card" type="button" data-index="6">
-          <span class="nro">6</span>
-          <span class="titulo">Video reciente #6</span>
-          <span class="sub">Click para verlo arriba</span>
+          <span class="titulo">Video 5</span>
+          <span class="sub">5P2tqlF85eE</span>
         </button>
       </div>
-
-      <p class="yt-note">Los cards de abajo cambian el video principal usando la playlist de subidas del canal (sin API y sin mantenimiento).</p>
     </div>
   </section>
 
@@ -535,22 +520,21 @@
     window.addEventListener("scroll", mostrar);
     mostrar();
 
-    // YouTube: 1 grande + cards abajo (indices de la playlist Uploads)
-    const PLAYLIST_UPLOADS = "UURKCN_xpraIbiZU91kXA94w";
+    // YouTube: video grande + cards (links reales que pasaste)
     const iframePrincipal = document.getElementById("ytPrincipal");
     const cards = document.querySelectorAll(".yt-card");
 
-    function cargarVideoPorIndice(index){
-      iframePrincipal.src = "https://www.youtube.com/embed/videoseries?list=" + PLAYLIST_UPLOADS + "&index=" + index;
+    function cargarVideo(videoId){
+      iframePrincipal.src = "https://www.youtube.com/embed/" + videoId;
       cards.forEach(c => c.classList.remove("active"));
-      const activo = document.querySelector('.yt-card[data-index="' + index + '"]');
+      const activo = document.querySelector('.yt-card[data-video="' + videoId + '"]');
       if (activo) activo.classList.add("active");
     }
 
     cards.forEach(card => {
       card.addEventListener("click", () => {
-        const idx = card.getAttribute("data-index");
-        cargarVideoPorIndice(idx);
+        const videoId = card.getAttribute("data-video");
+        cargarVideo(videoId);
       });
     });
   </script>
