@@ -724,4 +724,684 @@
   </script>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TÍO SERGIO | El lugar de los mayores 🎶</title>
+  <meta name="description" content="Bailanta, música, tragos y diversión. Viernes y sábados desde las 22:00 hs en José C. Paz. ¡Viví la noche con TÍO SERGIO™!" />
+
+  <link rel="icon" type="image/png" href="https://iili.io/KmWWSnV.md.webp" />
+  <meta property="og:title" content="TÍO SERGIO™ | El lugar de los mayores 🎤💃" />
+  <meta property="og:description" content="Cumbia • Cuarteto • Rock and Roll • Shows en vivo y la mejor energía de la noche. Viernes y sábados desde las 22:00 hs en José C. Paz." />
+  <meta property="og:image" content="https://iili.io/KpcsxCN.md.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tio-sergio.onrender.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TÍO SERGIO™ | El lugar de los mayores 🎶" />
+  <meta name="twitter:description" content="Un clásico de la noche. Música, tragos y buena compañía. ¡Vení a disfrutar la noche con TÍO SERGIO™!" />
+  <meta name="twitter:image" content="https://iili.io/KpcsxCN.md.jpg" />
+  <link rel="preload" as="image" href="https://iili.io/KpcsxCN.md.jpg">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{scroll-behavior:smooth;overflow-x:hidden}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:radial-gradient(ellipse at center,#1a0f0a 0%,#000 85%);
+      color:#fff;line-height:1.6;text-align:center;
+    }
+    .fondo{
+      position:fixed;inset:0;z-index:-1;
+      background:url('https://iili.io/KmM0LyN.md.jpg') center/cover no-repeat;
+      filter:brightness(0.7);
+      animation:reflejo 10s ease-in-out infinite alternate;
+    }
+    @keyframes reflejo{
+      0%{filter:brightness(0.7)saturate(1.1)}
+      50%{filter:brightness(0.85)saturate(1.4)}
+      100%{filter:brightness(0.7)saturate(1.1)}
+    }
+
+    header{
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;text-align:center;
+      padding:80px 20px 40px;
+      background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);
+    }
+
+    .logo-container{
+      position:relative;
+      display:inline-block;
+      margin-top:50px;
+      animation:floatLogo 6s ease-in-out infinite;
+    }
+    .logo-principal{
+      width:clamp(260px,55vw,440px);
+      border-radius:50%;
+      filter:drop-shadow(0 0 25px #fff);
+      position:relative;z-index:2;
+      animation:neonLoop 5s linear infinite;
+    }
+
+    @keyframes neonLoop{
+      0%{filter:drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 45px #00ffff)}
+      25%{filter:drop-shadow(0 0 40px #ffcc66) drop-shadow(0 0 60px #00ffff)}
+      50%{filter:drop-shadow(0 0 60px #ff00ff) drop-shadow(0 0 80px #ffcc66)}
+      75%{filter:drop-shadow(0 0 45px #00ffff) drop-shadow(0 0 60px #ff00ff)}
+      100%{filter:drop-shadow(0 0 30px #ffcc66) drop-shadow(0 0 45px #00ffff)}
+    }
+
+    @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    .slogan-circular{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%, -50%);
+      width:clamp(380px,85vw,620px);
+      height:clamp(380px,85vw,620px);
+      border-radius:50%;
+      pointer-events:none;
+      z-index:3;
+    }
+    .slogan-circular span{
+      position:absolute;left:50%;top:0;
+      transform-origin:0 clamp(200px, 42vw, 310px);
+      font-size:clamp(0.95em, 2.6vw, 1.1em);
+      font-weight:600;color:#fff;
+      text-shadow:0 0 10px #ffcc66,0 0 20px #ff00ff,0 0 30px #00ffff;
+      white-space:pre;
+    }
+
+    section{
+      text-align:center;
+      padding:40px 20px;
+      max-width:900px;
+      margin:0 auto;
+      opacity:0;
+      transform:translateY(50px);
+      transition:all 1s ease;
+    }
+    section.visible{opacity:1;transform:translateY(0)}
+
+    .horarios{
+      font-size:1.4em;margin-top:15px;color:#fff;
+      text-shadow:0 0 15px #ff6600,0 0 25px #ffcc66;
+    }
+
+    .bloque{
+      padding:45px 25px;background:rgba(0,0,0,0.65);
+      border-radius:15px;margin:40px auto;backdrop-filter:blur(5px);
+      box-shadow:0 0 25px rgba(255,255,255,0.05);
+    }
+    .bloque h3{
+      color:#ffcc66;
+      text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff;
+      font-size:clamp(1.6em,4vw,2.2em);
+      margin-bottom:15px;
+    }
+    .bloque p.descripcion {
+      font-size:1.2em;color:#fff;
+      text-shadow:0 0 10px rgba(255, 204, 102, 0.7);
+      line-height:1.9;margin:18px 0;
+    }
+
+    .anfitrion{text-align:center;padding:80px 20px;}
+    .titulo-anfitrion{
+      font-size:clamp(1.4em,4vw,2em);
+      font-weight:700;margin-bottom:25px;
+      color:#ffcc66;
+      text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ffcc66;
+      letter-spacing:2px;
+    }
+    .img-anfitrion{
+      width:min(90%,650px);
+      border-radius:15px;
+      display:block;margin:auto;
+      box-shadow:
+        0 0 60px #ff00ff,
+        0 0 90px #00ffff,
+        0 0 120px #ffcc66,
+        0 0 160px #ff00ff;
+      animation:pulsoMulti 5s infinite ease-in-out;
+    }
+
+    @keyframes pulsoMulti{
+      0%{box-shadow:0 0 50px #ff00ff,0 0 80px #00ffff,0 0 100px #ffcc66}
+      50%{box-shadow:0 0 90px #ff00ff,0 0 140px #00ffff,0 0 180px #ffcc66}
+      100%{box-shadow:0 0 50px #00ffff,0 0 80px #ff00ff,0 0 100px #ffcc66}
+    }
+
+    .evento-hoy{
+      max-width:980px;
+      margin:20px auto 10px;
+      padding:20px;
+    }
+    .evento-card{
+      background:rgba(0,0,0,0.7);
+      border-radius:18px;
+      padding:22px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 0 30px rgba(255,255,255,0.06);
+    }
+    .evento-badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ff0000,#ff6600);
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.6px;
+      box-shadow:0 0 18px rgba(255,0,0,.6);
+      margin-bottom:14px;
+    }
+    .evento-card h3{
+      color:#ffcc66;
+      font-size:clamp(1.5em,4vw,2.1em);
+      text-shadow:0 0 10px #ff00ff,0 0 16px #00ffff;
+      margin-bottom:10px;
+    }
+    .evento-card p{
+      margin:8px 0;
+      font-size:1.05em;
+      text-shadow:0 0 10px rgba(255,255,255,0.12);
+    }
+    .evento-lista{
+      display:grid;
+      gap:10px;
+      margin:18px auto 4px;
+      max-width:860px;
+      text-align:left;
+    }
+    .evento-lista p{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:12px;
+      padding:12px 14px;
+      margin:0;
+    }
+
+    .contacto-final {
+      text-align:center;
+      padding:70px 20px;
+    }
+    .contacto-final a {
+      display:block;
+      font-size:1.15em;
+      margin:6px 0;
+      color:#fff;
+      text-decoration:none;
+      text-shadow:0 0 8px #ffcc66;
+    }
+    .contacto-final a:hover { color:#ffcc66; }
+
+    .redes-local{
+      margin-top:12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .redes-local a img {
+      width:55px !important;
+      height:55px !important;
+      object-fit:contain !important;
+      border-radius:0 !important;
+      transition:.3s ease;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));
+    }
+
+    .youtube-area{
+      margin-top:40px;
+      margin-bottom:40px;
+      max-width:1100px;
+    }
+    .youtube-area .yt-logo{
+      width:95px;
+      filter:drop-shadow(0 0 14px red);
+      border-radius:10px;
+    }
+
+    .video-main{
+      width:100%;
+      max-width:900px;
+      aspect-ratio:16/9;
+      margin:24px auto 0;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 0 22px #ff00ff;
+      background:rgba(0,0,0,0.25);
+    }
+    .video-main iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      display:block;
+    }
+
+    .yt-cards-wrap{
+      width:100%;
+      max-width:980px;
+      margin:20px auto 0;
+    }
+
+    .yt-cards-title{
+      font-size:1.05em;
+      color:#fff;
+      margin-bottom:12px;
+      text-shadow:0 0 10px rgba(255,255,255,.2);
+    }
+
+    .yt-cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      width:100%;
+    }
+
+    .yt-card{
+      background:rgba(0,0,0,0.60);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      text-align:left;
+      transition:.25s ease;
+      box-shadow:0 0 12px rgba(255,0,255,0.12);
+      appearance:none;
+      -webkit-appearance:none;
+    }
+    .yt-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,204,102,0.35);
+      box-shadow:0 0 18px rgba(255,0,255,0.22);
+    }
+    .yt-card.active{
+      border-color:rgba(255,204,102,0.6);
+      box-shadow:0 0 20px rgba(255,204,102,0.2),0 0 20px rgba(255,0,255,0.14);
+    }
+
+    .yt-thumb{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      background:#111;
+      overflow:hidden;
+    }
+    .yt-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .yt-card:hover .yt-thumb img{ transform:scale(1.04); }
+
+    .yt-play{
+      position:absolute;
+      inset:auto auto 10px 10px;
+      background:rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.2);
+      color:#fff;
+      border-radius:999px;
+      padding:5px 10px;
+      font-size:.85em;
+      font-weight:700;
+      backdrop-filter:blur(4px);
+    }
+
+    .yt-card-body{ padding:12px; }
+    .yt-card-topline{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:8px;
+    }
+    .yt-nro{
+      display:inline-flex;
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      background:rgba(255,0,0,.2);
+      border:1px solid rgba(255,0,0,.35);
+      color:#fff;
+      flex:0 0 auto;
+    }
+    .yt-badge{
+      font-size:.75em;
+      font-weight:700;
+      color:#fff;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:999px;
+      padding:4px 8px;
+    }
+
+    .yt-card-title{
+      display:block;
+      color:#ffcc66;
+      font-weight:700;
+      font-size:.98em;
+      line-height:1.25;
+      margin-bottom:6px;
+    }
+    .yt-card-desc{
+      display:block;
+      color:#ddd;
+      font-size:.88em;
+      line-height:1.3;
+      opacity:.95;
+      min-height:34px;
+    }
+
+    .yt-actions{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .yt-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:700;
+      transition:.25s ease;
+    }
+    .yt-btn-canal{
+      color:#fff;
+      background:linear-gradient(90deg,#ff0000,#d90000);
+      box-shadow:0 0 16px rgba(255,0,0,.35);
+    }
+    .yt-btn-canal:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 22px rgba(255,0,0,.55);
+    }
+    .yt-btn-video{
+      color:#fff;
+      background:linear-gradient(90deg,#8a2be2,#ff00ff);
+      box-shadow:0 0 16px rgba(255,0,255,.25);
+    }
+    .yt-btn-video:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 22px rgba(255,0,255,.45);
+    }
+
+    footer{
+      background:rgba(0,0,0,0.9);
+      padding:20px 10px;text-align:center;
+      color:#aaa;font-size:.9em;
+      border-top:1px solid rgba(255,255,255,0.1);
+      letter-spacing:.5px;
+    }
+    footer a{color:#00ffff;text-decoration:none;transition:.3s}
+    footer a:hover{color:#ffcc66}
+
+    @media (max-width: 900px){
+      .yt-cards{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:12px;
+      }
+    }
+
+    @media (max-width: 560px){
+      .evento-lista{text-align:center}
+      .yt-cards{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+      }
+      .yt-card{ border-radius:12px; }
+      .yt-card-body{ padding:10px; }
+      .yt-card-title{
+        font-size:.9em;
+        margin-bottom:4px;
+      }
+      .yt-card-desc{
+        font-size:.8em;
+        min-height:auto;
+      }
+      .yt-badge{
+        font-size:.68em;
+        padding:3px 7px;
+      }
+      .yt-play{
+        font-size:.75em;
+        padding:4px 8px;
+      }
+      .yt-actions{ gap:10px; }
+      .yt-btn{
+        width:100%;
+        max-width:340px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fondo"></div>
+
+  <header>
+    <div class="logo-container">
+      <div class="slogan-circular" id="textoCircular"></div>
+      <img class="logo-principal" src="https://iili.io/KpcJDEG.md.png" alt="Logo TÍO SERGIO">
+    </div>
+  </header>
+
+  <section class="horarios">🎶 Viernes y Sábados desde las 22:00 hs 🎶</section>
+
+  <section class="bloque">
+    <h3>🔥 La noche es de los mayores 🔥</h3>
+    <p class="descripcion">💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.</p>
+    <p class="descripcion">🎶 Cumbia • Cuarteto • Rock and Roll • Shows en vivo de bandas tropicales nacionales e internacionales.</p>
+    <p class="descripcion">🎉 ¡Vení a conocerlo, no te lo pierdas!</p>
+    <p class="descripcion">✨ Ambiente festivo, buena música, luces que te envuelven y la mejor energía de la mano del queridísimo SERGIO LEAL 👉🏻 <strong>TÍO SERGIO™</strong>.</p>
+    <p class="descripcion">💃🍸🎤 ¡Disfrutá con amigos una noche distinta, hecha y pensada para vos!</p>
+  </section>
+
+  <section class="anfitrion">
+    <h3 class="titulo-anfitrion">ATENDIDO POR SU ANFITRIÓN, EL GRAN...
+    SERGIO LEAL 😎</h3>
+    <img class="img-anfitrion" src="https://iili.io/KpcsxCN.md.jpg" alt="Anfitrión Tío Sergio">
+  </section>
+
+  <section class="evento-hoy">
+    <div class="evento-card">
+      <div class="evento-badge">PROGRAMACIÓN</div>
+      <h3>🎤 Música, baile y noches inolvidables en TÍO SERGIO™</h3>
+      <p><strong>Te esperamos con la mejor energía, shows y diversión para disfrutar en familia y con amigos.</strong></p>
+
+      <div class="evento-lista">
+        <p>🎸 <strong>Miércoles</strong> de <strong>19:00 a 00:00 hs</strong> — <strong>Rock and Roll</strong>.</p>
+        <p>🎉 <strong>Sábados</strong> — TÍO SERGIO, <strong>el lugar de los mayores</strong>, abre sus puertas para que vengas a pasar las mejores noches.</p>
+        <p>🪗 <strong>Domingos</strong> de <strong>13:00 a 22:00 hs</strong> — bailamos con todo el <strong>chamamé y folklore</strong>.</p>
+        <p>🎶 <strong>Bandas invitadas</strong> y shows en vivo.</p>
+        <p>✅ <strong>Entrada libre y gratuita</strong>.</p>
+        <p>📍 Av. Pres. Art. Umberto Illia 6829, José C. Paz, Bs. As.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="youtube-area">
+    <h2 style="font-size:2em;color:#ffcc66;text-shadow:0 0 20px #ff00ff;margin-bottom:10px;">
+      ⭐ SEGUINOS EN YOUTUBE ⭐
+    </h2>
+
+    <img src="https://iili.io/fA4eRNj.jpg" class="yt-logo" alt="Logo YouTube">
+    <br><br>
+
+    <button onclick="window.open('https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1','_blank')"
+      style="background:#ff0000;color:white;padding:12px 32px;border:none;font-size:1.2em;border-radius:30px;font-weight:700;cursor:pointer;box-shadow:0 0 15px red;">
+      🔴 SUSCRIBIRSE
+    </button>
+
+    <div class="video-main">
+      <iframe
+        id="ytPrincipal"
+        src="https://www.youtube.com/embed/GbasgwfwcVI"
+        title="Video principal del canal"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        playsinline
+        webkit-playsinline>
+      </iframe>
+    </div>
+
+    <div class="yt-cards-wrap">
+      <p class="yt-cards-title">Videos destacados del canal (tocá una tarjeta para ver el video grande arriba):</p>
+
+      <div class="yt-cards" id="ytCards">
+        <button class="yt-card active" type="button" data-video="GbasgwfwcVI" data-link="https://youtu.be/GbasgwfwcVI?si=wwUePKveF8oWgxLL">
+          <div class="yt-thumb">
+            <img src="https://img.youtube.com/vi/GbasgwfwcVI/hqdefault.jpg" alt="Vista previa Video 1">
+            <span class="yt-play">▶ Ver</span>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-topline">
+              <span class="yt-nro">1</span>
+              <span class="yt-badge">Principal</span>
+            </div>
+            <span class="yt-card-title">Video destacado del canal</span>
+            <span class="yt-card-desc">Momento en vivo con el clima y la energia caracteristica de Tio Sergio.</span>
+          </div>
+        </button>
+
+        <button class="yt-card" type="button" data-video="HgRn5_doYJM" data-link="https://youtu.be/HgRn5_doYJM?si=IrRNj72GWBcPyFZK">
+          <div class="yt-thumb">
+            <img src="https://img.youtube.com/vi/HgRn5_doYJM/hqdefault.jpg" alt="Vista previa Video 2">
+            <span class="yt-play">▶ Ver</span>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-topline">
+              <span class="yt-nro">2</span>
+              <span class="yt-badge">Video</span>
+            </div>
+            <span class="yt-card-title">Noche en TÍO SERGIO</span>
+            <span class="yt-card-desc">Mas escenas del salon, la pista y la gente disfrutando la jornada.</span>
+          </div>
+        </button>
+
+        <button class="yt-card" type="button" data-video="HoS7JszbBac" data-link="https://youtu.be/HoS7JszbBac?si=08C1scVaXL5kDsvn">
+          <div class="yt-thumb">
+            <img src="https://img.youtube.com/vi/HoS7JszbBac/hqdefault.jpg" alt="Vista previa Video 3">
+            <span class="yt-play">▶ Ver</span>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-topline">
+              <span class="yt-nro">3</span>
+              <span class="yt-badge">Video</span>
+            </div>
+            <span class="yt-card-title">Musica y baile en vivo</span>
+            <span class="yt-card-desc">Ritmo, animacion y momentos del evento con toda la energia del lugar.</span>
+          </div>
+        </button>
+
+        <button class="yt-card" type="button" data-video="M7ZgZy7tRP8" data-link="https://youtu.be/M7ZgZy7tRP8?si=9qALXQWYO1vLPu_V">
+          <div class="yt-thumb">
+            <img src="https://img.youtube.com/vi/M7ZgZy7tRP8/hqdefault.jpg" alt="Vista previa Video 4">
+            <span class="yt-play">▶ Ver</span>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-topline">
+              <span class="yt-nro">4</span>
+              <span class="yt-badge">Video</span>
+            </div>
+            <span class="yt-card-title">Publico y diversion</span>
+            <span class="yt-card-desc">Mas contenido del canal oficial mostrando la experiencia en Tio Sergio.</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="yt-actions">
+        <a class="yt-btn yt-btn-video" id="btnVerVideoActual" href="https://youtu.be/GbasgwfwcVI?si=wwUePKveF8oWgxLL" target="_blank" rel="noopener noreferrer">
+          ▶ Ver video actual en YouTube
+        </a>
+        <a class="yt-btn yt-btn-canal" href="https://www.youtube.com/@elcanaldelasestrellasok" target="_blank" rel="noopener noreferrer">
+          🔴 Ver más en el canal oficial
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto-final">
+    <a href="mailto:info@tiosergio.com.ar">📩 info@tiosergio.com.ar</a>
+    <a href="tel:+541123272061">📞 11 2327-2061</a>
+    <a href="https://maps.google.com/?q=Av.+Pres.+Art.+Umberto+Illia+6829,+José+C.+Paz,+Bs.+As." target="_blank">📍 Av. Pres. Art. Umberto Illia 6829, José C. Paz, Bs. As.</a>
+    <div class="redes-local">
+      <a href="https://www.instagram.com/tiosergio935/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+      </a>
+      <a href="https://wa.me/541123272061" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+    </div>
+  </section>
+
+  <section class="frase-final">
+    <p style="
+      font-size:1.3em;
+      color:#ffcc66;
+      text-shadow:0 0 18px #ffcc66, 0 0 28px #ff00ff;
+      margin-top:40px;
+      margin-bottom:30px;
+      font-weight:600;">
+      La noche es tuya. Vivila en TÍO SERGIO™.
+    </p>
+  </section>
+
+  <footer>
+    © 2025 TÍO SERGIO | Diseñado por
+    <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
+  </footer>
+
+  <script>
+    const texto = "EL LUGAR DE LOS MAYORES ✦ ";
+    const contenedor = document.getElementById("textoCircular");
+    for (let i = 0; i < texto.length; i++) {
+      const letra = document.createElement("span");
+      letra.innerText = texto[i];
+      letra.style.transform = `rotate(${(i * 360) / texto.length}deg)`;
+      contenedor.appendChild(letra);
+    }
+
+    const secciones = document.querySelectorAll("section");
+    const mostrar = () => {
+      secciones.forEach(sec=>{
+        const pos = sec.getBoundingClientRect().top;
+        if(pos < window.innerHeight - 100){ sec.classList.add("visible"); }
+      });
+    };
+    window.addEventListener("scroll", mostrar);
+    mostrar();
+
+    const iframePrincipal = document.getElementById("ytPrincipal");
+    const cards = document.querySelectorAll(".yt-card");
+    const btnVideoActual = document.getElementById("btnVerVideoActual");
+
+    function cargarVideo(videoId, videoLink){
+      iframePrincipal.src = "https://www.youtube.com/embed/" + videoId;
+      if (btnVideoActual && videoLink) btnVideoActual.href = videoLink;
+
+      cards.forEach(c => c.classList.remove("active"));
+      const activo = document.querySelector('.yt-card[data-video="' + videoId + '"]');
+      if (activo) activo.classList.add("active");
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        const videoId = card.getAttribute("data-video");
+        const videoLink = card.getAttribute("data-link");
+        cargarVideo(videoId, videoLink);
+      });
+    });
+  </script>
+
+</body>
 </html>
