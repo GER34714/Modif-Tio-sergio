@@ -195,6 +195,86 @@
       margin:0;
     }
 
+    .rockera-destacada{
+      max-width:1040px;
+      margin:10px auto 20px;
+      padding:20px;
+    }
+    .rockera-card{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:24px;
+      align-items:center;
+      background:rgba(0,0,0,0.72);
+      border-radius:24px;
+      padding:24px;
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(8px);
+      box-shadow:0 0 35px rgba(255,0,0,0.16),0 0 24px rgba(255,0,255,0.1);
+    }
+    .rockera-img-wrap{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 0 26px rgba(255,0,0,0.25);
+      background:#090909;
+    }
+    .rockera-img-wrap img{
+      width:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .rockera-info{
+      text-align:left;
+    }
+    .rockera-badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ff003c,#ff6a00);
+      color:#fff;
+      font-size:.9em;
+      font-weight:700;
+      letter-spacing:.6px;
+      margin-bottom:14px;
+      box-shadow:0 0 18px rgba(255,0,60,.45);
+    }
+    .rockera-info h3{
+      color:#fff;
+      font-size:clamp(1.9em,4vw,2.8em);
+      line-height:1.05;
+      margin-bottom:14px;
+      text-transform:uppercase;
+      text-shadow:0 0 12px rgba(255,0,0,.55),0 0 24px rgba(255,0,255,.25);
+    }
+    .rockera-sub{
+      color:#ffcc66;
+      font-size:1.15em;
+      font-weight:700;
+      margin-bottom:14px;
+      text-shadow:0 0 12px rgba(255,204,102,.3);
+    }
+    .rockera-info p{
+      color:#f1f1f1;
+      font-size:1.05em;
+      line-height:1.75;
+      margin-bottom:14px;
+      text-shadow:0 0 8px rgba(255,255,255,0.08);
+    }
+    .rockera-horario{
+      display:inline-block;
+      margin-top:6px;
+      padding:12px 20px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#fff;
+      font-weight:800;
+      font-size:1.05em;
+      letter-spacing:.4px;
+      box-shadow:0 0 18px rgba(255,0,0,0.14);
+    }
+
     .contacto-final {
       text-align:center;
       padding:70px 20px;
@@ -424,6 +504,12 @@
         grid-template-columns:repeat(2,minmax(0,1fr));
         gap:12px;
       }
+      .rockera-card{
+        grid-template-columns:1fr;
+      }
+      .rockera-info{
+        text-align:center;
+      }
     }
 
     @media (max-width: 560px){
@@ -455,6 +541,20 @@
         width:100%;
         max-width:340px;
       }
+      .rockera-card{
+        padding:16px;
+        gap:18px;
+      }
+      .rockera-info h3{
+        font-size:clamp(1.55em,8vw,2.2em);
+      }
+      .rockera-info p{
+        font-size:1em;
+      }
+      .rockera-horario{
+        width:100%;
+        text-align:center;
+      }
     }
   </style>
 </head>
@@ -480,6 +580,23 @@
     <p class="descripcion">💃🍸🎤 ¡Disfrutá con amigos una noche distinta, hecha y pensada para vos!</p>
   </section>
 
+  <section class="rockera-destacada">
+    <div class="rockera-card">
+      <div class="rockera-img-wrap">
+        <img src="https://iili.io/qc2cLlt.md.png" alt="Viernes de Terapia Rockera en Tío Sergio">
+      </div>
+      <div class="rockera-info">
+        <span class="rockera-badge">EVENTO DESTACADO</span>
+        <h3>Viernes de Terapia Rockera</h3>
+        <div class="rockera-sub">El primer viernes de cada mes se vive distinto en TÍO SERGIO.</div>
+        <p>Una noche pensada para los que disfrutan del rock and roll, la pista encendida y el clima de una verdadera bailanta rockera.</p>
+        <p>Te esperamos con música, baile, energía y toda la onda para que vengas a pasar una fecha especial, intensa y bien arriba, ideal para disfrutar entre amigos.</p>
+        <p>Si te gusta cantar, bailar y vivir una noche con personalidad propia, esta propuesta es para vos.</p>
+        <div class="rockera-horario">De 22:00 a 05:00 hs</div>
+      </div>
+    </div>
+  </section>
+
   <section class="anfitrion">
     <h3 class="titulo-anfitrion">ATENDIDO POR SU ANFITRIÓN, EL GRAN...
     SERGIO LEAL 😎</h3>
@@ -495,10 +612,10 @@
 
       <div class="evento-lista">
         <p>🎸 <strong>Miercoles de 19:00 a 00:00 hs</strong> — <strong>Rock and Roll</strong> para cortar la semana con ritmo, baile y buena musica.</p>
-        <p>🎉 <strong>Sabados</strong> — <strong>TIO SERGIO, el lugar de los mayores</strong>, abre sus puertas para que vengas a pasar una de las mejores noches, con diversion, musica y un ambiente unico.</p>
-        <p>🪗 <strong>Domingos de 13:00 a 22:00 hs</strong> — bailamos con todo el <strong>chamame y folklore</strong>, con la alegria de siempre y <strong>bandas invitadas</strong> que hacen de cada jornada una fiesta.</p>
+        <p>🎉 <strong>Sabados de 22:00 a 06:00 hs</strong> — <strong>TIO SERGIO, el lugar de los mayores</strong>, abre sus puertas para que vengas a pasar una de las mejores noches, con diversion, musica y un ambiente unico.</p>
+        <p>🪗 <strong>Domingos de 13:00 a 22:00 hs entrada gratis! si gratis!!!</strong> — bailamos con todo el <strong>chamame y folklore</strong>, con la alegria de siempre y <strong>bandas invitadas</strong> que hacen de cada jornada una fiesta.</p>
         <p>🎶 <strong>Shows en vivo y bandas invitadas</strong> para disfrutar cada fecha.</p>
-        <p>✅ <strong>Entrada libre y gratuita</strong> para que vengas a disfrutar sin excusas.</p>
+        <p>✅ <strong>DOMINGOS Entrada libre y gratuita</strong> para que vengas a disfrutar sin excusas.</p>
         <p>📍 <strong>Av. Pres. Art. Umberto Illia 6829, Jose C. Paz, Bs. As.</strong></p>
       </div>
     </div>
@@ -520,7 +637,7 @@
     <div class="video-main">
       <iframe
         id="ytPrincipal"
-        src="https://www.youtube.com/embed/GbasgwfwcVI"
+        src="https://www.youtube.com/embed/mMcEde3D32Q"
         title="Video principal del canal"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
@@ -533,9 +650,9 @@
       <p class="yt-cards-title">Videos destacados del canal (tocá una tarjeta para ver el video grande arriba):</p>
 
       <div class="yt-cards" id="ytCards">
-        <button class="yt-card active" type="button" data-video="GbasgwfwcVI" data-link="https://youtu.be/GbasgwfwcVI?si=wwUePKveF8oWgxLL">
+        <button class="yt-card active" type="button" data-video="mMcEde3D32Q" data-link="https://www.youtube.com/watch?v=mMcEde3D32Q">
           <div class="yt-thumb">
-            <img src="https://img.youtube.com/vi/GbasgwfwcVI/hqdefault.jpg" alt="Vista previa Video 1">
+            <img src="https://img.youtube.com/vi/mMcEde3D32Q/hqdefault.jpg" alt="Vista previa Video 1">
             <span class="yt-play">▶ Ver</span>
           </div>
           <div class="yt-card-body">
@@ -543,14 +660,14 @@
               <span class="yt-nro">1</span>
               <span class="yt-badge">Principal</span>
             </div>
-            <span class="yt-card-title">Video destacado del canal</span>
-            <span class="yt-card-desc">Momento en vivo con el clima y la energia caracteristica de Tio Sergio.</span>
+            <span class="yt-card-title">Noche en TÍO SERGIO</span>
+            <span class="yt-card-desc">Clima de fiesta, público presente y toda la energía del lugar en una noche bien arriba.</span>
           </div>
         </button>
 
-        <button class="yt-card" type="button" data-video="HgRn5_doYJM" data-link="https://youtu.be/HgRn5_doYJM?si=IrRNj72GWBcPyFZK">
+        <button class="yt-card" type="button" data-video="c8uisiPR75k" data-link="https://www.youtube.com/watch?v=c8uisiPR75k">
           <div class="yt-thumb">
-            <img src="https://img.youtube.com/vi/HgRn5_doYJM/hqdefault.jpg" alt="Vista previa Video 2">
+            <img src="https://img.youtube.com/vi/c8uisiPR75k/hqdefault.jpg" alt="Vista previa Video 2">
             <span class="yt-play">▶ Ver</span>
           </div>
           <div class="yt-card-body">
@@ -558,14 +675,14 @@
               <span class="yt-nro">2</span>
               <span class="yt-badge">Video</span>
             </div>
-            <span class="yt-card-title">Noche en TÍO SERGIO</span>
-            <span class="yt-card-desc">Mas escenas del salon, la pista y la gente disfrutando la jornada.</span>
+            <span class="yt-card-title">Pista encendida</span>
+            <span class="yt-card-desc">Más escenas del salón, la música en vivo y la gente disfrutando una gran jornada.</span>
           </div>
         </button>
 
-        <button class="yt-card" type="button" data-video="HoS7JszbBac" data-link="https://youtu.be/HoS7JszbBac?si=08C1scVaXL5kDsvn">
+        <button class="yt-card" type="button" data-video="LqA4IFqrmA4" data-link="https://www.youtube.com/watch?v=LqA4IFqrmA4">
           <div class="yt-thumb">
-            <img src="https://img.youtube.com/vi/HoS7JszbBac/hqdefault.jpg" alt="Vista previa Video 3">
+            <img src="https://img.youtube.com/vi/LqA4IFqrmA4/hqdefault.jpg" alt="Vista previa Video 3">
             <span class="yt-play">▶ Ver</span>
           </div>
           <div class="yt-card-body">
@@ -573,14 +690,14 @@
               <span class="yt-nro">3</span>
               <span class="yt-badge">Video</span>
             </div>
-            <span class="yt-card-title">Musica y baile en vivo</span>
-            <span class="yt-card-desc">Ritmo, animacion y momentos del evento con toda la energia del lugar.</span>
+            <span class="yt-card-title">Rock and Roll en vivo</span>
+            <span class="yt-card-desc">Baile, ritmo y momentos que muestran la esencia festiva de TÍO SERGIO.</span>
           </div>
         </button>
 
-        <button class="yt-card" type="button" data-video="M7ZgZy7tRP8" data-link="https://youtu.be/M7ZgZy7tRP8?si=9qALXQWYO1vLPu_V">
+        <button class="yt-card" type="button" data-video="nUeQKxvwW-I" data-link="https://www.youtube.com/watch?v=nUeQKxvwW-I">
           <div class="yt-thumb">
-            <img src="https://img.youtube.com/vi/M7ZgZy7tRP8/hqdefault.jpg" alt="Vista previa Video 4">
+            <img src="https://img.youtube.com/vi/nUeQKxvwW-I/hqdefault.jpg" alt="Vista previa Video 4">
             <span class="yt-play">▶ Ver</span>
           </div>
           <div class="yt-card-body">
@@ -588,14 +705,14 @@
               <span class="yt-nro">4</span>
               <span class="yt-badge">Video</span>
             </div>
-            <span class="yt-card-title">Publico y diversion</span>
-            <span class="yt-card-desc">Mas contenido del canal oficial mostrando la experiencia en Tio Sergio.</span>
+            <span class="yt-card-title">Fiesta y baile en el salón</span>
+            <span class="yt-card-desc">Otra muestra del ambiente, la diversión y la experiencia que se vive cada fecha.</span>
           </div>
         </button>
       </div>
 
       <div class="yt-actions">
-        <a class="yt-btn yt-btn-video" id="btnVerVideoActual" href="https://youtu.be/GbasgwfwcVI?si=wwUePKveF8oWgxLL" target="_blank" rel="noopener noreferrer">
+        <a class="yt-btn yt-btn-video" id="btnVerVideoActual" href="https://www.youtube.com/watch?v=mMcEde3D32Q" target="_blank" rel="noopener noreferrer">
           ▶ Ver video actual en YouTube
         </a>
         <a class="yt-btn yt-btn-canal" href="https://www.youtube.com/@elcanaldelasestrellasok" target="_blank" rel="noopener noreferrer">
