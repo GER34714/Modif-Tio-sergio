@@ -2,10 +2,16 @@
 class SecurityManager {
     constructor() {
         this.sessionKey = 'tiosergio_admin_session';
+        this.timestampKey = 'tiosergio_admin_timestamp';
+        this.attemptsKey = 'tiosergio_login_attempts';
+        this.blockKey = 'tiosergio_login_block';
         this.maxSessionTime = 2 * 60 * 60 * 1000; // 2 horas
+        this.sessionDuration = 2 * 60 * 60 * 1000; // 2 horas
+        this.blockDuration = 15 * 60 * 1000; // 15 minutos
         this.maxFailedAttempts = 5;
         this.lockoutTime = 15 * 60 * 1000; // 15 minutos
         this.supabaseClient = null;
+        this.adminPassword = 'admin123'; // Contraseña por defecto - en producción usar variables de entorno
         
         this.init();
     }
@@ -34,9 +40,21 @@ class SecurityManager {
     // Inicializar Supabase Auth
     async initSupabase() {
         try {
-            this.supabaseClient = new window.SupabaseClient();
-            await this.supabaseClient.init();
-            console.log('✅ SecurityManager conectado a Supabase Auth');
+            // Esperar a que el DOM esté listo
+            if (document.readyState === 'loading') {
+                await new Promise(resolve => {
+                    document.addEventListener('DOMContentLoaded', resolve);
+                });
+            }
+            
+            // Verificar que SupabaseClient esté disponible
+            if (typeof window.SupabaseClient !== 'undefined') {
+                this.supabaseClient = new window.SupabaseClient();
+                await this.supabaseClient.init();
+                console.log('✅ SecurityManager conectado a Supabase Auth');
+            } else {
+                throw new Error('SupabaseClient no está disponible');
+            }
         } catch (error) {
             console.warn('⚠️ Supabase Auth no disponible, usando fallback:', error);
             this.supabaseClient = null;
@@ -139,6 +157,9 @@ class SecurityManager {
     
     // Hash simple (solo para demostración)
     simpleHash(str) {
+        if (!str || typeof str !== 'string') {
+            return '0';
+        }
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
             const char = str.charCodeAt(i);
