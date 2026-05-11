@@ -705,6 +705,7 @@
         
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('general')">Información General</button>
+            <button class="tab-btn" onclick="showTab('programacion')">📅 Programación</button>
             <button class="tab-btn" onclick="showTab('videos')">Videos de YouTube</button>
             <button class="tab-btn" onclick="showTab('imagenes')">🖼️ Imágenes</button>
             <button class="tab-btn" onclick="showTab('secciones')">Secciones del Sitio</button>
@@ -748,6 +749,40 @@
                     <button type="submit" class="btn-save">Guardar Cambios</button>
                     <button type="button" class="btn-cancel" onclick="loadData()">Cancelar</button>
                 </form>
+            </div>
+        </div>
+        
+        <!-- Tab: Programación -->
+        <div id="programacion" class="tab-content">
+            <div class="form-section">
+                <h3>Configuración de Programación Semanal</h3>
+                <form id="programacionConfigForm">
+                    <div class="form-group">
+                        <label for="progTitulo">Título de la Programación</label>
+                        <input type="text" id="progTitulo" name="progTitulo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="progDescripcion">Descripción General</label>
+                        <textarea id="progDescripcion" name="progDescripcion" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="progDetalles">Detalles Adicionales</label>
+                        <textarea id="progDetalles" name="progDetalles" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-save">Guardar Configuración</button>
+                </form>
+            </div>
+            
+            <div class="form-section">
+                <h3>Eventos de la Programación</h3>
+                <div id="eventosList" class="video-list">
+                    <!-- Los eventos se cargarán dinámicamente -->
+                </div>
+                
+                <button class="btn-add-video-main" onclick="openEventoModal()">➕ Agregar Nuevo Evento</button>
             </div>
         </div>
         
@@ -895,6 +930,39 @@
                 </button>
             </div>
         </div>
+    
+    <!-- Modal para agregar eventos -->
+    <div id="eventoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📅 Agregar Nuevo Evento</h2>
+                <button class="modal-close" onclick="closeEventoModal()">✕</button>
+            </div>
+            
+            <div class="error-message" id="eventoModalError"></div>
+            
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="eventoEmoji">Emoji del Evento</label>
+                    <input type="text" id="eventoEmoji" placeholder="🎸" maxlength="5" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventoTitulo">Título del Evento</label>
+                    <input type="text" id="eventoTitulo" placeholder="Ej: Sábados de 22:00 a 06:00 hs" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventoDescripcion">Descripción del Evento</label>
+                    <textarea id="eventoDescripcion" placeholder="Describe el evento..." rows="3" required></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-cancel-modal" onclick="closeEventoModal()">Cancelar</button>
+                <button class="btn-add-video" onclick="addEventoFromModal()">Agregar Evento</button>
+            </div>
+        </div>
     </div>
     
     <script src="security.js"></script>
@@ -964,6 +1032,11 @@
                 document.getElementById('canal').value = currentData.youtube.canal || '';
                 document.getElementById('suscripcion').value = currentData.youtube.suscripcion || '';
                 
+                // Cargar programación
+                document.getElementById('progTitulo').value = currentData.secciones.programacion?.titulo || '';
+                document.getElementById('progDescripcion').value = currentData.secciones.programacion?.descripcion || '';
+                document.getElementById('progDetalles').value = currentData.secciones.programacion?.detalles || '';
+                
                 // Cargar secciones
                 document.getElementById('principalTitulo').value = currentData.secciones.principal.titulo || '';
                 document.getElementById('principalDesc').value = currentData.secciones.principal.descripcion.join('\n') || '';
@@ -975,6 +1048,9 @@
                 
                 // Cargar videos
                 renderVideos();
+                
+                // Cargar programación
+                renderProgramacion();
                 
                 // Cargar imágenes
                 renderImagenes();
@@ -1004,6 +1080,30 @@
                     <button class="btn-delete" onclick="deleteVideo(${index})">Eliminar</button>
                 `;
                 videoList.appendChild(videoItem);
+            });
+        }
+        
+        // Renderizar programación
+        function renderProgramacion() {
+            const eventosList = document.getElementById('eventosList');
+            eventosList.innerHTML = '';
+            
+            const eventos = currentData.secciones.programacion?.eventos || [];
+            
+            eventos.forEach((evento, index) => {
+                const eventoItem = document.createElement('div');
+                eventoItem.className = 'video-item';
+                eventoItem.innerHTML = `
+                    <div class="video-info">
+                        <div style="font-size: 2em; margin-bottom: 10px;">${evento.emoji}</div>
+                        <div>
+                            <strong>${evento.titulo}</strong><br>
+                            <small>${evento.descripcion}</small>
+                        </div>
+                    </div>
+                    <button class="btn-delete" onclick="deleteEvento(${index})">Eliminar</button>
+                `;
+                eventosList.appendChild(eventoItem);
             });
         }
         
@@ -1108,6 +1208,26 @@
             try {
                 await window.adminAPI.saveData(currentData);
                 showMessage('Configuración de YouTube guardada', 'success');
+            } catch (error) {
+                showMessage('Error al guardar: ' + error.message, 'error');
+            }
+        });
+        
+        // Guardar programación
+        document.getElementById('programacionConfigForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentData.secciones.programacion) {
+                currentData.secciones.programacion = {};
+            }
+            
+            currentData.secciones.programacion.titulo = document.getElementById('progTitulo').value;
+            currentData.secciones.programacion.descripcion = document.getElementById('progDescripcion').value;
+            currentData.secciones.programacion.detalles = document.getElementById('progDetalles').value;
+            
+            try {
+                await window.adminAPI.saveData(currentData);
+                showMessage('Configuración de programación guardada', 'success');
             } catch (error) {
                 showMessage('Error al guardar: ' + error.message, 'error');
             }
@@ -1503,9 +1623,81 @@
             }
         }
         
+        // Funciones del modal de eventos
+        function openEventoModal() {
+            const modal = document.getElementById('eventoModal');
+            modal.classList.add('active');
+            resetEventoModal();
+            document.getElementById('eventoEmoji').focus();
+        }
+        
+        function closeEventoModal() {
+            const modal = document.getElementById('eventoModal');
+            modal.classList.remove('active');
+            resetEventoModal();
+        }
+        
+        function resetEventoModal() {
+            document.getElementById('eventoEmoji').value = '';
+            document.getElementById('eventoTitulo').value = '';
+            document.getElementById('eventoDescripcion').value = '';
+            document.getElementById('eventoModalError').style.display = 'none';
+        }
+        
+        function addEventoFromModal() {
+            const emoji = document.getElementById('eventoEmoji').value.trim();
+            const titulo = document.getElementById('eventoTitulo').value.trim();
+            const descripcion = document.getElementById('eventoDescripcion').value.trim();
+            
+            if (!emoji || !titulo || !descripcion) {
+                document.getElementById('eventoModalError').textContent = 'Todos los campos son obligatorios';
+                document.getElementById('eventoModalError').style.display = 'block';
+                return;
+            }
+            
+            // Agregar evento a la programación
+            if (!currentData.secciones.programacion) {
+                currentData.secciones.programacion = {};
+            }
+            if (!currentData.secciones.programacion.eventos) {
+                currentData.secciones.programacion.eventos = [];
+            }
+            
+            currentData.secciones.programacion.eventos.push({
+                emoji: emoji,
+                titulo: titulo,
+                descripcion: descripcion
+            });
+            
+            // Guardar y actualizar
+            window.adminAPI.saveData(currentData).then(() => {
+                showMessage('Evento agregado correctamente', 'success');
+                closeEventoModal();
+                renderProgramacion();
+            }).catch(error => {
+                showMessage('Error al agregar evento: ' + error.message, 'error');
+            });
+        }
+        
+        function deleteEvento(index) {
+            if (confirm('¿Estás seguro de que quieres eliminar este evento?')) {
+                currentData.secciones.programacion.eventos.splice(index, 1);
+                
+                window.adminAPI.saveData(currentData).then(() => {
+                    showMessage('Evento eliminado correctamente', 'success');
+                    renderProgramacion();
+                }).catch(error => {
+                    showMessage('Error al eliminar evento: ' + error.message, 'error');
+                });
+            }
+        }
+        
         // Inicializar
         if (checkSession()) {
             loadData();
+        } else {
+            // Redirigir al login si no hay sesión activa
+            window.location.href = 'login.html';
         }
     </script>
 </body>

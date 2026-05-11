@@ -196,6 +196,50 @@ class DynamicLoader {
         }
     }
     
+    // Actualizar programación semanal
+    updateProgramacion() {
+        if (!this.siteData || !this.siteData.secciones.programacion) return;
+        
+        const prog = this.siteData.secciones.programacion;
+        
+        // Actualizar título de programación
+        const progTitulo = document.querySelector('.programacion-titulo');
+        if (progTitulo) {
+            progTitulo.textContent = prog.titulo;
+        }
+        
+        // Actualizar descripción de programación
+        const progDesc = document.querySelector('.programacion-desc');
+        if (progDesc) {
+            progDesc.textContent = prog.descripcion;
+        }
+        
+        // Actualizar detalles de programación
+        const progDetalles = document.querySelector('.programacion-detalles');
+        if (progDetalles) {
+            progDetalles.textContent = prog.detalles;
+        }
+        
+        // Actualizar eventos de programación
+        const eventosContainer = document.querySelector('.eventos-list');
+        if (eventosContainer && prog.eventos) {
+            eventosContainer.innerHTML = '';
+            
+            prog.eventos.forEach(evento => {
+                const eventoDiv = document.createElement('div');
+                eventoDiv.className = 'evento-item';
+                eventoDiv.innerHTML = `
+                    <div class="evento-emoji">${evento.emoji}</div>
+                    <div class="evento-info">
+                        <h4>${evento.titulo}</h4>
+                        <p>${evento.descripcion}</p>
+                    </div>
+                `;
+                eventosContainer.appendChild(eventoDiv);
+            });
+        }
+    }
+    
     // Actualizar videos de YouTube
     updateYouTubeVideos() {
         if (!this.siteData) return;
@@ -331,6 +375,7 @@ class DynamicLoader {
             this.updateHorarios();
             this.updateSeccionPrincipal();
             this.updateEventoDestacado();
+            this.updateProgramacion();
             this.updateYouTubeVideos();
             this.updateContactInfo();
             

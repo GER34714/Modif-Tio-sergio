@@ -114,6 +114,8 @@ function serveStaticFile(req, res, pathname) {
     
     if (pathname === '/') {
         filePath = path.join(__dirname, 'index.html');
+    } else if (pathname === '/admin/' || pathname === '/admin') {
+        filePath = path.join(__dirname, 'admin', 'dashboard.html');
     } else if (pathname.startsWith('/admin/')) {
         filePath = path.join(__dirname, pathname);
     } else if (pathname.startsWith('/js/') || pathname.startsWith('/data/') || pathname.startsWith('/api/')) {

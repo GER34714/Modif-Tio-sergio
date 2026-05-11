@@ -759,6 +759,21 @@
 
   <script src="js/dynamic-loader.js"></script>
   <script>
+    // Inicializar el cargador dinámico
+    const dynamicLoader = new DynamicLoader();
+    
+    // Cargar datos dinámicamente cuando se carga la página
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await dynamicLoader.initialize();
+        
+        // Disparar evento de contenido cargado
+        window.dispatchEvent(new CustomEvent('dynamicContentLoaded'));
+      } catch (error) {
+        console.error('Error al cargar contenido dinámico:', error);
+      }
+    });
+
     // Mantener el texto circular animado
     const texto = "EL LUGAR DE LOS MAYORES ✦ ";
     const contenedor = document.getElementById("textoCircular");
