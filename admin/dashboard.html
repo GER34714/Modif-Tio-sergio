@@ -970,6 +970,9 @@
     <script>
         let currentData = {};
         
+        // Inicializar AdminAPI
+        window.adminAPI = new AdminAPI();
+        
         // Verificar sesión
         function checkSession() {
             return window.securityManager.checkCurrentSession();

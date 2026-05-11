@@ -87,11 +87,18 @@
     "suscripcion": "https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1",
     "videos": [
       {
+        "id": "fuYq32iJdIw",
+        "titulo": "Te Tengo que Olvidar",
+        "descripcion": "Los Del Maranaho - Topic",
+        "enlace": "https://www.youtube.com/watch?v=fuYq32iJdIw",
+        "activo": true
+      },
+      {
         "id": "nUeQKxvwW-I",
         "titulo": "Fiesta y baile en el salón",
         "descripcion": "Otra muestra del ambiente, la diversión y la experiencia que se vive cada fecha.",
         "enlace": "https://www.youtube.com/watch?v=nUeQKxvwW-I",
-        "activo": true
+        "activo": false
       },
       {
         "id": "LqA4IFqrmA4",
@@ -126,7 +133,7 @@
     "youtube_logo": "https://iili.io/fA4eRNj.jpg"
   },
   "config": {
-    "ultimo_actualizacion": "2025-01-11T15:13:00.000Z",
+    "ultimo_actualizacion": "2026-05-11T19:42:52.841Z",
     "version": "1.0.0"
   }
 }

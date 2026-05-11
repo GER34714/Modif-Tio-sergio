@@ -5,18 +5,32 @@ class AdminAPI {
         this.fallbackPath = '../data/content.json';
     }
     
-    // Cargar datos desde localStorage o archivo fallback
+    // Cargar datos desde API del servidor o localStorage
     async loadData() {
         try {
-            // Primero intentar desde localStorage
+            // Primero intentar desde la API del servidor
+            try {
+                const response = await fetch('/api/data');
+                if (response.ok) {
+                    const data = await response.json();
+                    // Guardar en localStorage para respaldo
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                    console.log('✅ Datos cargados desde API del servidor');
+                    return data;
+                }
+            } catch (apiError) {
+                console.warn('⚠️ API no disponible, intentando desde localStorage:', apiError);
+            }
+            
+            // Si la API falla, intentar desde localStorage
             const localData = localStorage.getItem(this.storageKey);
             if (localData) {
                 const data = JSON.parse(localData);
-                console.log('✅ Datos cargados desde localStorage');
+                console.log('✅ Datos cargados desde localStorage (respaldo)');
                 return data;
             }
             
-            // Si no hay datos en localStorage, cargar desde archivo
+            // Si no hay datos en localStorage, cargar desde archivo fallback
             const response = await fetch(this.fallbackPath);
             if (response.ok) {
                 const data = await response.json();
@@ -33,22 +47,47 @@ class AdminAPI {
         }
     }
     
-    // Guardar datos en localStorage con persistencia
+    // Guardar datos en localStorage con persistencia y en servidor
     async saveData(data) {
         try {
             // Actualizar timestamp
             data.config.ultimo_actualizacion = new Date().toISOString();
             
-            // Guardar en localStorage
+            // Guardar en localStorage primero (para respaldo)
             localStorage.setItem(this.storageKey, JSON.stringify(data));
             
-            console.log('✅ Datos guardados en localStorage persistentemente');
-            
-            return {
-                success: true,
-                message: 'Datos guardados correctamente',
-                data: data
-            };
+            // También guardar en el servidor a través de la API
+            try {
+                const response = await fetch('/api/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Error al guardar en servidor');
+                }
+                
+                const result = await response.json();
+                console.log('✅ Datos guardados en servidor y localStorage');
+                
+                return {
+                    success: true,
+                    message: 'Datos guardados correctamente en servidor',
+                    data: data,
+                    serverResponse: result
+                };
+            } catch (serverError) {
+                console.warn('⚠️ No se pudo guardar en servidor, solo localStorage:', serverError);
+                return {
+                    success: true,
+                    message: 'Datos guardados localmente (servidor no disponible)',
+                    data: data,
+                    warning: 'servidor_no_disponible'
+                };
+            }
         } catch (error) {
             console.error('Error al guardar datos:', error);
             throw error;
