@@ -3,13 +3,37 @@ class DynamicLoader {
     constructor() {
         this.dataPath = './data/content.json';
         this.siteData = null;
+        this.supabaseClient = null;
+        this.initSupabase();
     }
     
-    // Cargar datos desde el JSON
+    async initSupabase() {
+        try {
+            this.supabaseClient = new window.SupabaseClient();
+            await this.supabaseClient.init();
+            console.log('✅ DynamicLoader conectado a Supabase');
+        } catch (error) {
+            console.warn('⚠️ Supabase no disponible, usando fallback:', error);
+            this.supabaseClient = null;
+        }
+    }
+    
+    // Cargar datos desde Supabase o fallback
     async loadData() {
         try {
-            // Siempre cargar desde servidor para tener datos frescos
-            // Agregar timestamp para evitar cache
+            // Primero intentar desde Supabase
+            if (this.supabaseClient && this.supabaseClient.isConnected()) {
+                const data = await this.supabaseClient.getSiteData();
+                if (data) {
+                    // Guardar en localStorage como respaldo
+                    localStorage.setItem('tiosergio_data', JSON.stringify(data));
+                    this.siteData = data;
+                    console.log('✅ Datos cargados desde Supabase');
+                    return this.siteData;
+                }
+            }
+            
+            // Fallback a servidor con cache-busting
             const timestamp = Date.now();
             const cacheBuster = `?t=${timestamp}`;
             

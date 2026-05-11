@@ -3,17 +3,40 @@ class AdminAPI {
     constructor() {
         this.storageKey = 'tiosergio_data';
         this.fallbackPath = '../data/content.json';
+        this.supabaseClient = null;
+        this.initSupabase();
     }
     
-    // Cargar datos desde API del servidor o localStorage
+    async initSupabase() {
+        try {
+            this.supabaseClient = new window.SupabaseClient();
+            await this.supabaseClient.init();
+            console.log('✅ AdminAPI conectado a Supabase');
+        } catch (error) {
+            console.warn('⚠️ Supabase no disponible, usando fallback:', error);
+            this.supabaseClient = null;
+        }
+    }
+    
+    // Cargar datos desde Supabase o fallback
     async loadData() {
         try {
-            // Primero intentar desde la API del servidor
+            // Primero intentar desde Supabase
+            if (this.supabaseClient && this.supabaseClient.isConnected()) {
+                const data = await this.supabaseClient.getSiteData();
+                if (data) {
+                    // Guardar en localStorage para respaldo
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                    console.log('✅ Datos cargados desde Supabase');
+                    return data;
+                }
+            }
+            
+            // Fallback a API del servidor
             try {
                 const response = await fetch('/api/data');
                 if (response.ok) {
                     const data = await response.json();
-                    // Guardar en localStorage para respaldo
                     localStorage.setItem(this.storageKey, JSON.stringify(data));
                     console.log('✅ Datos cargados desde API del servidor');
                     return data;
@@ -22,7 +45,7 @@ class AdminAPI {
                 console.warn('⚠️ API no disponible, intentando desde localStorage:', apiError);
             }
             
-            // Si la API falla, intentar desde localStorage
+            // Fallback a localStorage
             const localData = localStorage.getItem(this.storageKey);
             if (localData) {
                 const data = JSON.parse(localData);
@@ -30,11 +53,10 @@ class AdminAPI {
                 return data;
             }
             
-            // Si no hay datos en localStorage, cargar desde archivo fallback
+            // Fallback a archivo
             const response = await fetch(this.fallbackPath);
             if (response.ok) {
                 const data = await response.json();
-                // Guardar en localStorage para persistencia
                 localStorage.setItem(this.storageKey, JSON.stringify(data));
                 console.log('✅ Datos cargados desde archivo y guardados en localStorage');
                 return data;
@@ -47,18 +69,26 @@ class AdminAPI {
         }
     }
     
-    // Guardar datos en localStorage con persistencia y en servidor
+    // Guardar datos en Supabase con persistencia real
     async saveData(data) {
         try {
             // Actualizar timestamp
+            data.config = data.config || {};
             data.config.ultimo_actualizacion = new Date().toISOString();
             
-            // Guardar en localStorage primero (para respaldo)
-            localStorage.setItem(this.storageKey, JSON.stringify(data));
+            // Primero intentar guardar en Supabase
+            if (this.supabaseClient && this.supabaseClient.isConnected()) {
+                const result = await this.supabaseClient.saveSiteData(data);
+                if (result.success) {
+                    // Guardar en localStorage como respaldo
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                    console.log('✅ Datos guardados en Supabase y localStorage');
+                    return result;
+                }
+            }
             
-            // También guardar en el servidor a través de la API
+            // Fallback a API del servidor
             try {
-                // Determinar la ruta correcta según el entorno
                 const isProduction = window.location.hostname !== 'localhost';
                 const apiPath = isProduction ? '/api/data' : 'http://localhost:3000/api/data';
                 
@@ -75,6 +105,7 @@ class AdminAPI {
                 }
                 
                 const result = await response.json();
+                localStorage.setItem(this.storageKey, JSON.stringify(data));
                 console.log('✅ Datos guardados en servidor y localStorage');
                 
                 return {
@@ -85,9 +116,10 @@ class AdminAPI {
                 };
             } catch (serverError) {
                 console.warn('⚠️ No se pudo guardar en servidor, solo localStorage:', serverError);
+                localStorage.setItem(this.storageKey, JSON.stringify(data));
                 return {
                     success: true,
-                    message: 'Datos guardados localmente (servidor no disponible)',
+                    message: 'Datos guardados localmente',
                     data: data,
                     warning: 'servidor_no_disponible'
                 };
