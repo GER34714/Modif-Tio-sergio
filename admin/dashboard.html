@@ -1317,18 +1317,28 @@
                 return;
             }
             
-            // Crear objeto del video
+            // Crear objeto del video - EL ÚLTIMO AGREGADO SERÁ EL PRINCIPAL
             const newVideo = {
                 id: currentVideoData.id,
                 titulo: title,
                 descripcion: description || 'Video destacado de TÍO SERGIO',
                 enlace: currentVideoData.url,
-                activo: false
+                activo: true  // El nuevo video se vuelve principal
             };
             
             try {
-                // Agregar a los datos actuales
-                currentData.youtube.videos.push(newVideo);
+                // Desactivar todos los videos existentes
+                currentData.youtube.videos.forEach(video => {
+                    video.activo = false;
+                });
+                
+                // Agregar el nuevo video al principio (como principal)
+                currentData.youtube.videos.unshift(newVideo);
+                
+                // Limitar a máximo 8 videos (opcional)
+                if (currentData.youtube.videos.length > 8) {
+                    currentData.youtube.videos = currentData.youtube.videos.slice(0, 8);
+                }
                 
                 // Guardar datos
                 await window.adminAPI.saveData(currentData);
@@ -1336,8 +1346,11 @@
                 // Actualizar vista
                 renderVideos();
                 
+                // Actualizar el sitio principal dinámicamente
+                updateSiteVideos();
+                
                 // Mostrar éxito
-                document.getElementById('modalSuccess').textContent = '✅ Video agregado correctamente';
+                document.getElementById('modalSuccess').textContent = '✅ Video agregado como principal correctamente';
                 document.getElementById('modalSuccess').style.display = 'block';
                 
                 // Cerrar modal después de 2 segundos
@@ -1463,6 +1476,30 @@
             const ytLogo = document.querySelector('.yt-logo');
             if (ytLogo && currentData.imagenes.youtube_logo) {
                 ytLogo.src = currentData.imagenes.youtube_logo;
+            }
+        }
+        
+        // Actualizar videos en el sitio principal
+        function updateSiteVideos() {
+            // Actualizar el iframe principal
+            const iframePrincipal = window.opener?.document.getElementById('ytPrincipal');
+            if (iframePrincipal && currentData.youtube.videos.length > 0) {
+                const videoActivo = currentData.youtube.videos.find(v => v.activo) || currentData.youtube.videos[0];
+                iframePrincipal.src = `https://www.youtube.com/embed/${videoActivo.id}?rel=0&modestbranding=1`;
+                
+                // Actualizar botón de ver video actual
+                const btnVideoActual = window.opener?.document.getElementById('btnVerVideoActual');
+                if (btnVideoActual) {
+                    btnVideoActual.href = videoActivo.enlace;
+                }
+            }
+            
+            // Disparar evento para que el sitio principal se actualice
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'videosUpdated',
+                    data: currentData.youtube.videos
+                }, '*');
             }
         }
         

@@ -8,11 +8,25 @@ class DynamicLoader {
     // Cargar datos desde el JSON
     async loadData() {
         try {
+            // Primero intentar desde localStorage (persistencia)
+            const localData = localStorage.getItem('tiosergio_data');
+            if (localData) {
+                this.siteData = JSON.parse(localData);
+                console.log('✅ Datos cargados desde localStorage');
+                return this.siteData;
+            }
+            
+            // Si no hay datos en localStorage, cargar desde archivo
             const response = await fetch(this.dataPath);
             if (!response.ok) {
                 throw new Error('No se pudieron cargar los datos del sitio');
             }
             this.siteData = await response.json();
+            
+            // Guardar en localStorage para persistencia
+            localStorage.setItem('tiosergio_data', JSON.stringify(this.siteData));
+            
+            console.log('✅ Datos cargados desde archivo y guardados en localStorage');
             return this.siteData;
         } catch (error) {
             console.error('Error al cargar datos dinámicos:', error);
@@ -340,6 +354,21 @@ window.dynamicLoader = new DynamicLoader();
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     window.dynamicLoader.initialize();
+    
+    // Escuchar mensajes del panel admin
+    window.addEventListener('message', (event) => {
+        if (event.data.type === 'videosUpdated') {
+            console.log('📹 Videos actualizados desde panel admin');
+            // Recargar videos
+            window.dynamicLoader.updateYouTubeVideos();
+        }
+        
+        if (event.data.type === 'imagesUpdated') {
+            console.log('🖼️ Imágenes actualizadas desde panel admin');
+            // Recargar imágenes
+            window.dynamicLoader.updateImages();
+        }
+    });
 });
 
 // Función para recargar contenido manualmente

@@ -1,37 +1,49 @@
 // API de Administración para TÍO SERGIO
 class AdminAPI {
     constructor() {
-        this.dataPath = '../data/content.json';
+        this.storageKey = 'tiosergio_data';
+        this.fallbackPath = '../data/content.json';
     }
     
-    // Cargar datos desde el archivo JSON
+    // Cargar datos desde localStorage o archivo fallback
     async loadData() {
         try {
-            const response = await fetch(this.dataPath);
-            if (!response.ok) {
-                throw new Error('No se pudieron cargar los datos');
+            // Primero intentar desde localStorage
+            const localData = localStorage.getItem(this.storageKey);
+            if (localData) {
+                const data = JSON.parse(localData);
+                console.log('✅ Datos cargados desde localStorage');
+                return data;
             }
-            return await response.json();
+            
+            // Si no hay datos en localStorage, cargar desde archivo
+            const response = await fetch(this.fallbackPath);
+            if (response.ok) {
+                const data = await response.json();
+                // Guardar en localStorage para persistencia
+                localStorage.setItem(this.storageKey, JSON.stringify(data));
+                console.log('✅ Datos cargados desde archivo y guardados en localStorage');
+                return data;
+            }
+            
+            throw new Error('No se pudieron cargar los datos');
         } catch (error) {
             console.error('Error al cargar datos:', error);
             throw error;
         }
     }
     
-    // Guardar datos en el archivo JSON
+    // Guardar datos en localStorage con persistencia
     async saveData(data) {
         try {
             // Actualizar timestamp
             data.config.ultimo_actualizacion = new Date().toISOString();
             
-            // En un entorno real, esto debería ser una llamada a un backend
-            // Por ahora, simulamos el guardado y mostramos los datos para copiar
-            console.log('Datos a guardar:', JSON.stringify(data, null, 2));
+            // Guardar en localStorage
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
             
-            // Para desarrollo: guardar en localStorage
-            localStorage.setItem('tiosergio_data', JSON.stringify(data));
+            console.log('✅ Datos guardados en localStorage persistentemente');
             
-            // Simular respuesta exitosa
             return {
                 success: true,
                 message: 'Datos guardados correctamente',
