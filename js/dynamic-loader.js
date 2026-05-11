@@ -8,25 +8,37 @@ class DynamicLoader {
     // Cargar datos desde el JSON
     async loadData() {
         try {
-            // Primero intentar desde localStorage (persistencia)
-            const localData = localStorage.getItem('tiosergio_data');
-            if (localData) {
-                this.siteData = JSON.parse(localData);
-                console.log('✅ Datos cargados desde localStorage');
-                return this.siteData;
-            }
-            
-            // Si no hay datos en localStorage, cargar desde archivo
+            // Siempre cargar desde servidor para tener datos frescos
             const response = await fetch(this.dataPath);
             if (!response.ok) {
                 throw new Error('No se pudieron cargar los datos del sitio');
             }
-            this.siteData = await response.json();
+            const serverData = await response.json();
             
-            // Guardar en localStorage para persistencia
+            // Verificar si los datos del servidor son más nuevos que localStorage
+            const localData = localStorage.getItem('tiosergio_data');
+            let shouldUseServer = true;
+            
+            if (localData) {
+                const localParsed = JSON.parse(localData);
+                const serverTimestamp = new Date(serverData.config.ultimo_actualizacion).getTime();
+                const localTimestamp = new Date(localParsed.config.ultimo_actualizacion).getTime();
+                
+                // Usar datos del servidor si son más nuevos
+                shouldUseServer = serverTimestamp > localTimestamp;
+                
+                if (!shouldUseServer) {
+                    console.log('✅ Usando datos locales (más recientes)');
+                    this.siteData = localParsed;
+                    return this.siteData;
+                }
+            }
+            
+            // Usar datos del servidor
+            this.siteData = serverData;
             localStorage.setItem('tiosergio_data', JSON.stringify(this.siteData));
             
-            console.log('✅ Datos cargados desde archivo y guardados en localStorage');
+            console.log('✅ Datos cargados desde servidor (más recientes)');
             return this.siteData;
         } catch (error) {
             console.error('Error al cargar datos dinámicos:', error);
@@ -444,6 +456,13 @@ class DynamicLoader {
                 console.warn('Error verificando cambios:', error);
             }
         }, intervalMs);
+    }
+    
+    // Forzar limpieza de cache y recarga desde servidor
+    forceServerReload() {
+        console.log('🧹 Limpiando cache y forzando recarga desde servidor...');
+        localStorage.removeItem('tiosergio_data');
+        return this.loadData();
     }
 }
 
