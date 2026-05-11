@@ -58,7 +58,11 @@ class AdminAPI {
             
             // También guardar en el servidor a través de la API
             try {
-                const response = await fetch('/api/data', {
+                // Determinar la ruta correcta según el entorno
+                const isProduction = window.location.hostname !== 'localhost';
+                const apiPath = isProduction ? '/api/data' : 'http://localhost:3000/api/data';
+                
+                const response = await fetch(apiPath, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
