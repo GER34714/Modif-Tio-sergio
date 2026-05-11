@@ -9,7 +9,11 @@ class DynamicLoader {
     async loadData() {
         try {
             // Siempre cargar desde servidor para tener datos frescos
-            const response = await fetch(this.dataPath);
+            // Agregar timestamp para evitar cache
+            const timestamp = Date.now();
+            const cacheBuster = `?t=${timestamp}`;
+            
+            const response = await fetch(this.dataPath + cacheBuster);
             if (!response.ok) {
                 throw new Error('No se pudieron cargar los datos del sitio');
             }
@@ -380,6 +384,9 @@ class DynamicLoader {
     // Inicializar todo el contenido dinámico
     async initialize() {
         try {
+            // Forzar limpieza de cache al iniciar
+            this.clearAllCache();
+            
             await this.loadData();
             
             // Actualizar todas las secciones
@@ -401,6 +408,21 @@ class DynamicLoader {
             // Intentar cargar con fallback
             this.loadFallbackData();
             this.initialize();
+        }
+    }
+    
+    // Limpiar toda la cache del navegador
+    clearAllCache() {
+        try {
+            // Limpiar localStorage
+            localStorage.removeItem('tiosergio_data');
+            
+            // Forzar recarga de la página para limpiar cache HTTP
+            if (performance.navigation.type !== 1) {
+                window.location.reload(true);
+            }
+        } catch (error) {
+            console.warn('Error limpiando cache:', error);
         }
     }
     
