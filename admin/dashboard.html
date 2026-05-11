@@ -50,6 +50,24 @@
             box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
         
+        .btn-back-site {
+            background: linear-gradient(90deg, #00ff00, #00cc00);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .btn-back-site:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -517,6 +535,122 @@
             content: "➕";
             font-size: 20px;
         }
+        
+        /* Estilos para gestión de imágenes */
+        .imagenes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .imagen-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .imagen-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.2);
+            border-color: rgba(255, 204, 102, 0.3);
+        }
+        
+        .imagen-preview {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .imagen-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .imagen-preview .placeholder {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .imagen-info {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .imagen-info label {
+            color: #ffcc66;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .imagen-info input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        
+        .imagen-info input:focus {
+            outline: none;
+            border-color: #ffcc66;
+            box-shadow: 0 0 15px rgba(255, 204, 102, 0.3);
+        }
+        
+        .imagen-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-preview-image {
+            background: linear-gradient(90deg, #0099ff, #0066cc);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-preview-image:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 153, 255, 0.4);
+        }
+        
+        .btn-save-image {
+            background: linear-gradient(90deg, #00ff00, #00cc00);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-save-image:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -557,7 +691,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎛️ Panel de Administración - TÍO SERGIO</h1>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="btn-back-site" onclick="goToSite()" title="Ir al sitio principal">
+                🏠 Sitio Web
+            </button>
+            <h1>🎛️ Panel de Administración - TÍO SERGIO</h1>
+        </div>
         <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
     </div>
     
@@ -567,6 +706,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('general')">Información General</button>
             <button class="tab-btn" onclick="showTab('videos')">Videos de YouTube</button>
+            <button class="tab-btn" onclick="showTab('imagenes')">🖼️ Imágenes</button>
             <button class="tab-btn" onclick="showTab('secciones')">Secciones del Sitio</button>
         </div>
         
@@ -635,6 +775,20 @@
                 <div class="video-list" id="videoList"></div>
                 
                 <button class="btn-add-video-main" onclick="openVideoModal()">Agregar Nuevo Video</button>
+            </div>
+        </div>
+        
+        <!-- Tab: Imágenes -->
+        <div id="imagenes" class="tab-content">
+            <div class="form-section">
+                <h3>🖼️ Gestión de Imágenes del Sitio</h3>
+                <p style="color: #aaa; margin-bottom: 20px;">
+                    Aquí puedes editar todas las imágenes del sitio. Pega las URLs de las nuevas imágenes y se actualizarán automáticamente.
+                </p>
+                
+                <div class="imagenes-grid" id="imagenesGrid">
+                    <!-- Las imágenes se cargarán dinámicamente -->
+                </div>
             </div>
         </div>
         
@@ -759,6 +913,11 @@
             window.location.href = 'login.html';
         }
         
+        // Ir al sitio principal
+        function goToSite() {
+            window.open('../index.html', '_blank');
+        }
+        
         // Cambiar tabs
         function showTab(tabName) {
             // Ocultar todos los tabs
@@ -817,6 +976,9 @@
                 // Cargar videos
                 renderVideos();
                 
+                // Cargar imágenes
+                renderImagenes();
+                
             } catch (error) {
                 showMessage('Error al cargar los datos: ' + error.message, 'error');
             }
@@ -842,6 +1004,45 @@
                     <button class="btn-delete" onclick="deleteVideo(${index})">Eliminar</button>
                 `;
                 videoList.appendChild(videoItem);
+            });
+        }
+        
+        // Renderizar imágenes
+        function renderImagenes() {
+            const imagenesGrid = document.getElementById('imagenesGrid');
+            imagenesGrid.innerHTML = '';
+            
+            const nombresImagenes = {
+                'favicon': '🌐 Favicon (Icono de la pestaña)',
+                'og_image': '📱 Imagen para Redes Sociales',
+                'fondo': '🎨 Imagen de Fondo Principal',
+                'logo_principal': '🎪 Logo Principal del Sitio',
+                'anfitrion': '👤 Foto del Anfitrión (Sergio)',
+                'evento_destacado': '🎸 Imagen del Evento Destacado',
+                'youtube_logo': '📺 Logo de YouTube'
+            };
+            
+            Object.entries(currentData.imagenes).forEach(([key, url]) => {
+                const imagenItem = document.createElement('div');
+                imagenItem.className = 'imagen-item';
+                
+                imagenItem.innerHTML = `
+                    <div class="imagen-preview">
+                        ${url ? `<img src="${url}" alt="${nombresImagenes[key] || key}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">❌ Imagen no disponible</div>` : 
+                        '<div class="placeholder">📷 Sin imagen</div>'}
+                    </div>
+                    <div class="imagen-info">
+                        <label>${nombresImagenes[key] || key}</label>
+                        <input type="url" id="img_${key}" value="${url}" placeholder="https://ejemplo.com/imagen.jpg">
+                    </div>
+                    <div class="imagen-actions">
+                        <button class="btn-preview-image" onclick="previewImage('${key}')">👁️ Vista Previa</button>
+                        <button class="btn-save-image" onclick="saveImage('${key}')">💾 Guardar</button>
+                    </div>
+                `;
+                
+                imagenesGrid.appendChild(imagenItem);
             });
         }
         
@@ -1166,6 +1367,104 @@
                 closeVideoModal();
             }
         });
+        
+        // Preview de imagen
+        function previewImage(key) {
+            const url = document.getElementById(`img_${key}`).value.trim();
+            if (!url) {
+                showMessage('Debes ingresar una URL válida', 'error');
+                return;
+            }
+            
+            window.open(url, '_blank');
+        }
+        
+        // Guardar imagen
+        async function saveImage(key) {
+            const url = document.getElementById(`img_${key}`).value.trim();
+            
+            if (!url) {
+                showMessage('Debes ingresar una URL válida', 'error');
+                return;
+            }
+            
+            // Validar URL
+            try {
+                new URL(url);
+            } catch {
+                showMessage('La URL no es válida', 'error');
+                return;
+            }
+            
+            try {
+                // Actualizar datos
+                currentData.imagenes[key] = url;
+                
+                // Guardar en JSON
+                await window.adminAPI.saveData(currentData);
+                
+                // Actualizar vista previa
+                renderImagenes();
+                
+                // Actualizar sitio principal dinámicamente
+                updateSiteImages();
+                
+                showMessage('✅ Imagen actualizada correctamente', 'success');
+                
+            } catch (error) {
+                showMessage('Error al guardar imagen: ' + error.message, 'error');
+            }
+        }
+        
+        // Actualizar imágenes en el sitio principal
+        function updateSiteImages() {
+            // Actualizar favicon
+            const favicon = document.querySelector('link[rel="icon"]');
+            if (favicon && currentData.imagenes.favicon) {
+                favicon.href = currentData.imagenes.favicon;
+            }
+            
+            // Actualizar meta imágenes
+            const ogImage = document.querySelector('meta[property="og:image"]');
+            if (ogImage && currentData.imagenes.og_image) {
+                ogImage.content = currentData.imagenes.og_image;
+            }
+            
+            const twitterImage = document.querySelector('meta[name="twitter:image"]');
+            if (twitterImage && currentData.imagenes.og_image) {
+                twitterImage.content = currentData.imagenes.og_image;
+            }
+            
+            // Actualizar fondo
+            const fondo = document.querySelector('.fondo');
+            if (fondo && currentData.imagenes.fondo) {
+                fondo.style.backgroundImage = `url('${currentData.imagenes.fondo}')`;
+            }
+            
+            // Actualizar logo principal
+            const logoPrincipal = document.querySelector('.logo-principal');
+            if (logoPrincipal && currentData.imagenes.logo_principal) {
+                logoPrincipal.src = currentData.imagenes.logo_principal;
+            }
+            
+            // Actualizar imagen del anfitrión
+            const imgAnfitrion = document.querySelector('.img-anfitrion');
+            if (imgAnfitrion && currentData.imagenes.anfitrion) {
+                imgAnfitrion.src = currentData.imagenes.anfitrion;
+            }
+            
+            // Actualizar imagen del evento destacado
+            const eventoImg = document.querySelector('.rockera-img-wrap img');
+            if (eventoImg && currentData.imagenes.evento_destacado) {
+                eventoImg.src = currentData.imagenes.evento_destacado;
+            }
+            
+            // Actualizar logo de YouTube
+            const ytLogo = document.querySelector('.yt-logo');
+            if (ytLogo && currentData.imagenes.youtube_logo) {
+                ytLogo.src = currentData.imagenes.youtube_logo;
+            }
+        }
         
         // Inicializar
         if (checkSession()) {

@@ -64,6 +64,22 @@
           "descripcion": ""
         }
       ]
+    },
+    "promociones": {
+      "frase_final": "La noche es tuya. Vivila en TÍO SERGIO™.",
+      "texto_circular": "EL LUGAR DE LOS MAYORES ✦ ",
+      "meta_tags": {
+        "og_title": "TÍO SERGIO™ | El lugar de los mayores 🎤💃",
+        "og_description": "Cumbia • Cuarteto • Rock and Roll • Shows en vivo y la mejor energía de la noche. Viernes y sábados desde las 22:00 hs en José C. Paz.",
+        "twitter_title": "TÍO SERGIO™ | El lugar de los mayores 🎶",
+        "twitter_description": "Un clásico de la noche. Música, tragos y buena compañía. ¡Vení a disfrutar la noche con TÍO SERGIO™!"
+      },
+      "youtube_section": {
+        "titulo": "⭐ SEGUINOS EN YOUTUBE ⭐",
+        "descripcion_tarjetas": "Videos destacados del canal (tocá una tarjeta para ver el video grande arriba):",
+        "btn_canal": "🔴 Ver más en el canal oficial",
+        "btn_video": "▶ Ver video actual en YouTube"
+      }
     }
   },
   "youtube": {
@@ -99,6 +115,15 @@
         "activo": false
       }
     ]
+  },
+  "imagenes": {
+    "favicon": "https://iili.io/KmWWSnV.md.webp",
+    "og_image": "https://iili.io/KpcsxCN.md.jpg",
+    "fondo": "https://iili.io/KmM0LyN.md.jpg",
+    "logo_principal": "https://iili.io/KpcJDEG.md.png",
+    "anfitrion": "https://iili.io/KpcsxCN.md.jpg",
+    "evento_destacado": "https://iili.io/qc2cLlt.md.png",
+    "youtube_logo": "https://iili.io/fA4eRNj.jpg"
   },
   "config": {
     "ultimo_actualizacion": "2025-01-11T15:13:00.000Z",

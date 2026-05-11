@@ -1,7 +1,7 @@
 // Cargador dinámico de contenido para TÍO SERGIO
 class DynamicLoader {
     constructor() {
-        this.dataPath = 'data/content.json';
+        this.dataPath = './data/content.json';
         this.siteData = null;
     }
     
