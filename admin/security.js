@@ -1,21 +1,19 @@
-// Sistema de seguridad para el panel de administración
+// Gestor de Seguridad para el Panel de Administración con Supabase Auth
 class SecurityManager {
     constructor() {
-        this.sessionKey = 'adminSession';
-        this.timestampKey = 'adminTimestamp';
-        this.attemptsKey = 'loginAttempts';
-        this.blockKey = 'loginBlock';
-        this.maxAttempts = 3;
-        this.blockDuration = 15 * 60 * 1000; // 15 minutos
-        this.sessionDuration = 24 * 60 * 60 * 1000; // 24 horas
-        
-        // Contraseña por defecto - en producción usar variables de entorno
-        this.adminPassword = 'tio2025';
+        this.sessionKey = 'tiosergio_admin_session';
+        this.maxSessionTime = 2 * 60 * 60 * 1000; // 2 horas
+        this.maxFailedAttempts = 5;
+        this.lockoutTime = 15 * 60 * 1000; // 15 minutos
+        this.supabaseClient = null;
         
         this.init();
     }
     
     init() {
+        // Inicializar Supabase Auth
+        this.initSupabase();
+        
         // Limpiar bloqueos expirados
         this.clearExpiredBlocks();
         
@@ -33,6 +31,18 @@ class SecurityManager {
         return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
     }
     
+    // Inicializar Supabase Auth
+    async initSupabase() {
+        try {
+            this.supabaseClient = new window.SupabaseClient();
+            await this.supabaseClient.init();
+            console.log('✅ SecurityManager conectado a Supabase Auth');
+        } catch (error) {
+            console.warn('⚠️ Supabase Auth no disponible, usando fallback:', error);
+            this.supabaseClient = null;
+        }
+    }
+    
     // Configurar protección CSRF
     setupCSRFProtection() {
         let token = sessionStorage.getItem('csrfToken');
@@ -47,7 +57,7 @@ class SecurityManager {
             forms.forEach(form => {
                 const input = document.createElement('input');
                 input.type = 'hidden';
-                input.name = 'csrf_token';
+                input.name = 'csrfToken';
                 input.value = token;
                 form.appendChild(input);
             });
@@ -138,8 +148,50 @@ class SecurityManager {
         return hash.toString();
     }
     
-    // Iniciar sesión
-    login(password) {
+    // Iniciar sesión con Supabase Auth
+    async login(email, password) {
+        try {
+            // Intentar login con Supabase Auth primero
+            if (this.supabaseClient && this.supabaseClient.isConnected()) {
+                const { data, error } = await this.supabaseClient.client.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                
+                if (error) {
+                    throw new Error(`Error de Supabase Auth: ${error.message}`);
+                }
+                
+                if (data.user) {
+                    // Crear sesión local
+                    const sessionData = {
+                        active: true,
+                        timestamp: Date.now(),
+                        user: data.user,
+                        provider: 'supabase',
+                        userAgent: navigator.userAgent,
+                        ip: this.getClientIP()
+                    };
+                    
+                    localStorage.setItem(this.sessionKey, JSON.stringify(sessionData));
+                    localStorage.setItem(this.timestampKey, Date.now().toString());
+                    
+                    console.log('✅ Login exitoso con Supabase Auth');
+                    return true;
+                }
+            }
+            
+            // Fallback al sistema original
+            return this.fallbackLogin(password);
+            
+        } catch (error) {
+            console.error('Error en login con Supabase:', error);
+            throw error;
+        }
+    }
+    
+    // Login fallback original
+    fallbackLogin(password) {
         // Verificar si está bloqueado
         if (this.isBlocked()) {
             const remaining = this.getBlockTimeRemaining();
@@ -163,6 +215,7 @@ class SecurityManager {
         const sessionData = {
             active: true,
             timestamp: Date.now(),
+            provider: 'local',
             userAgent: navigator.userAgent,
             ip: this.getClientIP()
         };
@@ -174,7 +227,18 @@ class SecurityManager {
     }
     
     // Cerrar sesión
-    logout() {
+    async logout() {
+        try {
+            // Cerrar sesión en Supabase si está disponible
+            if (this.supabaseClient && this.supabaseClient.isConnected()) {
+                await this.supabaseClient.client.auth.signOut();
+                console.log('✅ Sesión de Supabase cerrada');
+            }
+        } catch (error) {
+            console.warn('Error cerrando sesión de Supabase:', error);
+        }
+        
+        // Limpiar sesión local
         localStorage.removeItem(this.sessionKey);
         localStorage.removeItem(this.timestampKey);
         sessionStorage.removeItem('csrfToken');
