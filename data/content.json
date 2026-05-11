@@ -1,0 +1,107 @@
+{
+  "sitio": {
+    "titulo": "TÍO SERGIO | El lugar de los mayores 🎶",
+    "descripcion": "Bailanta, música, tragos y diversión. Viernes y sábados desde las 22:00 hs en José C. Paz. ¡Viví la noche con TÍO SERGIO™!",
+    "horarios": "🎶 Viernes y Sábados desde las 22:00 hs 🎶",
+    "direccion": "Av. Pres. Art. Umberto Illia 6829, José C. Paz, Bs. As.",
+    "telefono": "11 2327-2061",
+    "email": "info@tiosergio.com.ar"
+  },
+  "secciones": {
+    "principal": {
+      "titulo": "🔥 La noche es de los mayores 🔥",
+      "descripcion": [
+        "💥 Un clásico de la noche, donde se baila, se ríe y se disfruta al máximo.",
+        "🎶 Cumbia • Cuarteto • Rock and Roll • Shows en vivo de bandas tropicales nacionales e internacionales.",
+        "🎉 ¡Vení a conocerlo, no te lo pierdas!",
+        "✨ Ambiente festivo, buena música, luces que te envuelven y la mejor energía de la mano del queridísimo SERGIO LEAL 👉🏻 <strong>TÍO SERGIO™</strong>.",
+        "💃🍸🎤 ¡Disfrutá con amigos una noche distinta, hecha y pensada para vos!"
+      ]
+    },
+    "evento_destacado": {
+      "titulo": "Viernes de Terapia Rockera",
+      "subtitulo": "El primer viernes de cada mes se vive distinto en TÍO SERGIO.",
+      "descripcion": [
+        "Una noche pensada para los que disfrutan del rock and roll, la pista encendida y el clima de una verdadera bailanta rockera.",
+        "Te esperamos con música, baile, energía y toda la onda para que vengas a pasar una fecha especial, intensa y bien arriba, ideal para disfrutar entre amigos.",
+        "Si te gusta cantar, bailar y vivir una noche con personalidad propia, esta propuesta es para vos."
+      ],
+      "horario": "De 22:00 a 05:00 hs"
+    },
+    "programacion": {
+      "titulo": "🔥 Programacion semanal en TIO SERGIO 🔥",
+      "descripcion": "Veni a vivir noches y tardes a pura musica, baile y alegria en el lugar de los mayores.",
+      "detalles": "En TIO SERGIO te esperamos con la mejor energia, ambiente familiar, bandas invitadas y toda la onda para que la pases espectacular con amigos y en familia.",
+      "eventos": [
+        {
+          "emoji": "🎸",
+          "titulo": "Miercoles de 19:00 a 00:00 hs",
+          "descripcion": "Rock and Roll para cortar la semana con ritmo, baile y buena musica."
+        },
+        {
+          "emoji": "🎉",
+          "titulo": "Sabados de 22:00 a 06:00 hs",
+          "descripcion": "TIO SERGIO, el lugar de los mayores, abre sus puertas para que vengas a pasar una de las mejores noches, con diversion, musica y un ambiente unico."
+        },
+        {
+          "emoji": "🪗",
+          "titulo": "Domingos de 13:00 a 22:00 hs entrada gratis! si gratis!!!",
+          "descripcion": "bailamos con todo el chamame y folklore, con la alegria de siempre y bandas invitadas que hacen de cada jornada una fiesta."
+        },
+        {
+          "emoji": "🎶",
+          "titulo": "Shows en vivo y bandas invitadas",
+          "descripcion": "para disfrutar cada fecha."
+        },
+        {
+          "emoji": "✅",
+          "titulo": "DOMINGOS Entrada libre y gratuita",
+          "descripcion": "para que vengas a disfrutar sin excusas."
+        },
+        {
+          "emoji": "📍",
+          "titulo": "Av. Pres. Art. Umberto Illia 6829, Jose C. Paz, Bs. As.",
+          "descripcion": ""
+        }
+      ]
+    }
+  },
+  "youtube": {
+    "canal": "https://www.youtube.com/@elcanaldelasestrellasok",
+    "suscripcion": "https://www.youtube.com/@elcanaldelasestrellasok?sub_confirmation=1",
+    "videos": [
+      {
+        "id": "mMcEde3D32Q",
+        "titulo": "Noche en TÍO SERGIO",
+        "descripcion": "Clima de fiesta, público presente y toda la energía del lugar en una noche bien arriba.",
+        "enlace": "https://www.youtube.com/watch?v=mMcEde3D32Q",
+        "activo": true
+      },
+      {
+        "id": "c8uisiPR75k",
+        "titulo": "Pista encendida",
+        "descripcion": "Más escenas del salón, la música en vivo y la gente disfrutando una gran jornada.",
+        "enlace": "https://www.youtube.com/watch?v=c8uisiPR75k",
+        "activo": false
+      },
+      {
+        "id": "LqA4IFqrmA4",
+        "titulo": "Rock and Roll en vivo",
+        "descripcion": "Baile, ritmo y momentos que muestran la esencia festiva de TÍO SERGIO.",
+        "enlace": "https://www.youtube.com/watch?v=LqA4IFqrmA4",
+        "activo": false
+      },
+      {
+        "id": "nUeQKxvwW-I",
+        "titulo": "Fiesta y baile en el salón",
+        "descripcion": "Otra muestra del ambiente, la diversión y la experiencia que se vive cada fecha.",
+        "enlace": "https://www.youtube.com/watch?v=nUeQKxvwW-I",
+        "activo": false
+      }
+    ]
+  },
+  "config": {
+    "ultimo_actualizacion": "2025-01-11T15:13:00.000Z",
+    "version": "1.0.0"
+  }
+}

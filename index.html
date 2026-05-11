@@ -753,7 +753,9 @@
     <a href="https://ciborg347.onrender.com" target="_blank">Ciborg 347™</a>
   </footer>
 
+  <script src="js/dynamic-loader.js"></script>
   <script>
+    // Mantener el texto circular animado
     const texto = "EL LUGAR DE LOS MAYORES ✦ ";
     const contenedor = document.getElementById("textoCircular");
     for (let i = 0; i < texto.length; i++) {
@@ -763,6 +765,7 @@
       contenedor.appendChild(letra);
     }
 
+    // Animación de secciones al hacer scroll
     const secciones = document.querySelectorAll("section");
     const mostrar = () => {
       secciones.forEach(sec=>{
@@ -773,25 +776,9 @@
     window.addEventListener("scroll", mostrar);
     mostrar();
 
-    const iframePrincipal = document.getElementById("ytPrincipal");
-    const cards = document.querySelectorAll(".yt-card");
-    const btnVideoActual = document.getElementById("btnVerVideoActual");
-
-    function cargarVideo(videoId, videoLink){
-      iframePrincipal.src = "https://www.youtube.com/embed/" + videoId;
-      if (btnVideoActual && videoLink) btnVideoActual.href = videoLink;
-
-      cards.forEach(c => c.classList.remove("active"));
-      const activo = document.querySelector('.yt-card[data-video="' + videoId + '"]');
-      if (activo) activo.classList.add("active");
-    }
-
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        const videoId = card.getAttribute("data-video");
-        const videoLink = card.getAttribute("data-link");
-        cargarVideo(videoId, videoLink);
-      });
+    // Esperar a que el contenido dinámico se cargue para configurar los videos
+    window.addEventListener('dynamicContentLoaded', () => {
+      console.log('Contenido dinámico completamente cargado');
     });
   </script>
 
