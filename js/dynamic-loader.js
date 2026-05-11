@@ -327,6 +327,9 @@ class DynamicLoader {
             
         } catch (error) {
             console.error('Error al inicializar contenido dinámico:', error);
+            // Intentar cargar con fallback
+            this.loadFallbackData();
+            this.initialize();
         }
     }
 }
