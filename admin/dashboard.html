@@ -1211,6 +1211,11 @@
             try {
                 await window.adminAPI.saveData(currentData);
                 showMessage('Configuración de YouTube guardada', 'success');
+                
+                // Notificar al sitio principal para que se actualice
+                if (window.opener) {
+                    window.opener.postMessage({ type: 'adminDataUpdated' }, '*');
+                }
             } catch (error) {
                 showMessage('Error al guardar: ' + error.message, 'error');
             }
@@ -1245,7 +1250,12 @@
             
             try {
                 await window.adminAPI.saveData(currentData);
-                showMessage('Sección principal guardada', 'success');
+                showMessage('Información general guardada', 'success');
+                
+                // Notificar al sitio principal para que se actualice
+                if (window.opener) {
+                    window.opener.postMessage({ type: 'adminDataUpdated' }, '*');
+                }
             } catch (error) {
                 showMessage('Error al guardar: ' + error.message, 'error');
             }

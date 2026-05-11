@@ -767,10 +767,21 @@
       try {
         await dynamicLoader.initialize();
         
+        // Activar actualización automática cada 30 segundos
+        dynamicLoader.setupAutoRefresh(30000);
+        
         // Disparar evento de contenido cargado
         window.dispatchEvent(new CustomEvent('dynamicContentLoaded'));
       } catch (error) {
         console.error('Error al cargar contenido dinámico:', error);
+      }
+    });
+    
+    // Escuchar mensajes del panel admin para actualización inmediata
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'adminDataUpdated') {
+        console.log('🔄 Datos actualizados desde panel admin, recargando...');
+        dynamicLoader.reloadFromServer();
       }
     });
 

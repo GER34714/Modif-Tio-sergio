@@ -391,6 +391,60 @@ class DynamicLoader {
             this.initialize();
         }
     }
+    
+    // Recargar datos desde el servidor
+    async reloadFromServer() {
+        try {
+            // Limpiar localStorage para forzar carga desde servidor
+            localStorage.removeItem('tiosergio_data');
+            
+            // Recargar datos
+            await this.loadData();
+            
+            // Actualizar todo el contenido
+            this.updateMetadata();
+            this.updateHorarios();
+            this.updateSeccionPrincipal();
+            this.updateEventoDestacado();
+            this.updateProgramacion();
+            this.updateYouTubeVideos();
+            this.updateContactInfo();
+            
+            console.log('✅ Contenido recargado desde servidor');
+            
+            // Disparar evento de actualización
+            window.dispatchEvent(new CustomEvent('contentUpdated', {
+                detail: { timestamp: Date.now() }
+            }));
+            
+            return true;
+        } catch (error) {
+            console.error('Error al recargar contenido:', error);
+            return false;
+        }
+    }
+    
+    // Configurar actualización automática periódica
+    setupAutoRefresh(intervalMs = 30000) { // 30 segundos por defecto
+        setInterval(async () => {
+            try {
+                const response = await fetch('./data/content.json');
+                if (response.ok) {
+                    const serverData = await response.json();
+                    const serverTimestamp = new Date(serverData.config.ultimo_actualizacion).getTime();
+                    const localTimestamp = this.siteData ? new Date(this.siteData.config.ultimo_actualizacion).getTime() : 0;
+                    
+                    // Si hay cambios en el servidor, recargar
+                    if (serverTimestamp > localTimestamp) {
+                        console.log('🔄 Detectados cambios en el servidor, recargando...');
+                        await this.reloadFromServer();
+                    }
+                }
+            } catch (error) {
+                console.warn('Error verificando cambios:', error);
+            }
+        }, intervalMs);
+    }
 }
 
 // Crear instancia global
