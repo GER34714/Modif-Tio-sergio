@@ -245,6 +245,279 @@
             color: #ff6b6b;
         }
         
+        /* Modal para agregar videos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a0f0a 0%, #000 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .modal-header h2 {
+            color: #ffcc66;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        
+        .modal-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: rotate(90deg);
+        }
+        
+        .url-input-section {
+            margin-bottom: 25px;
+        }
+        
+        .url-input-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .url-input-wrapper input {
+            width: 100%;
+            padding: 15px 50px 15px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .url-input-wrapper input:focus {
+            outline: none;
+            border-color: #ffcc66;
+            box-shadow: 0 0 20px rgba(255, 204, 102, 0.3);
+        }
+        
+        .url-input-wrapper .loading-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+        
+        .url-input-wrapper.loading .loading-icon {
+            display: block;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+        
+        .video-preview-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .video-preview-section.active {
+            display: block;
+        }
+        
+        .video-preview-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .video-details {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .video-details input,
+        .video-details textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .video-details textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .video-details input:focus,
+        .video-details textarea:focus {
+            outline: none;
+            border-color: #ffcc66;
+            box-shadow: 0 0 15px rgba(255, 204, 102, 0.3);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        
+        .btn-cancel-modal {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cancel-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-add-video {
+            background: linear-gradient(90deg, #00ff00, #00cc00);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add-video:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+        }
+        
+        .btn-add-video:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+            display: none;
+        }
+        
+        .success-message {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            color: #51cf66;
+            display: none;
+        }
+        
+        /* Mejoras al botón de agregar video */
+        .btn-add-video-main {
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px auto;
+        }
+        
+        .btn-add-video-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
+        }
+        
+        .btn-add-video-main::before {
+            content: "➕";
+            font-size: 20px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -261,6 +534,23 @@
             
             .video-preview {
                 margin: 0 auto;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .video-preview-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions button {
+                width: 100%;
             }
         }
     </style>
@@ -344,7 +634,7 @@
                 <h3>Videos Destacados</h3>
                 <div class="video-list" id="videoList"></div>
                 
-                <button class="btn-save" onclick="addVideo()">+ Agregar Video</button>
+                <button class="btn-add-video-main" onclick="openVideoModal()">Agregar Nuevo Video</button>
             </div>
         </div>
         
@@ -392,6 +682,63 @@
                     
                     <button type="submit" class="btn-save">Guardar Cambios</button>
                 </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para agregar videos -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎬 Agregar Nuevo Video</h2>
+                <button class="modal-close" onclick="closeVideoModal()">✕</button>
+            </div>
+            
+            <div class="error-message" id="modalError"></div>
+            <div class="success-message" id="modalSuccess"></div>
+            
+            <div class="url-input-section">
+                <label for="videoUrl">📹 URL del Video de YouTube</label>
+                <div class="url-input-wrapper" id="urlInputWrapper">
+                    <input 
+                        type="url" 
+                        id="videoUrl" 
+                        placeholder="Pega aquí la URL del video de YouTube..."
+                        autocomplete="off"
+                    >
+                    <span class="loading-icon">⏳</span>
+                </div>
+            </div>
+            
+            <div class="video-preview-section" id="videoPreviewSection">
+                <h3>📋 Vista Previa del Video</h3>
+                <div class="video-preview-container">
+                    <div class="video-thumbnail">
+                        <img id="videoThumbnail" src="" alt="Vista previa del video">
+                        <span class="video-duration" id="videoDuration">00:00</span>
+                    </div>
+                    <div class="video-details">
+                        <input 
+                            type="text" 
+                            id="videoTitle" 
+                            placeholder="Título del video..."
+                            maxlength="100"
+                        >
+                        <textarea 
+                            id="videoDescription" 
+                            placeholder="Descripción del video..."
+                            maxlength="200"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-cancel-modal" onclick="closeVideoModal()">Cancelar</button>
+                <button class="btn-add-video" id="btnAddVideo" onclick="addVideoFromModal()" disabled>
+                    Agregar Video
+                </button>
             </div>
         </div>
     </div>
@@ -593,6 +940,230 @@
                 showMessage('Evento destacado guardado', 'success');
             } catch (error) {
                 showMessage('Error al guardar: ' + error.message, 'error');
+            }
+        });
+        
+        // Funciones del modal de videos
+        let currentVideoData = null;
+        
+        // Abrir modal
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.add('active');
+            resetModal();
+            document.getElementById('videoUrl').focus();
+        }
+        
+        // Cerrar modal
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('active');
+            resetModal();
+        }
+        
+        // Resetear modal
+        function resetModal() {
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('videoTitle').value = '';
+            document.getElementById('videoDescription').value = '';
+            document.getElementById('videoThumbnail').src = '';
+            document.getElementById('videoDuration').textContent = '00:00';
+            document.getElementById('videoPreviewSection').classList.remove('active');
+            document.getElementById('btnAddVideo').disabled = true;
+            document.getElementById('modalError').style.display = 'none';
+            document.getElementById('modalSuccess').style.display = 'none';
+            document.getElementById('urlInputWrapper').classList.remove('loading');
+            currentVideoData = null;
+        }
+        
+        // Manejar cambio en la URL del video
+        document.getElementById('videoUrl').addEventListener('input', async function(e) {
+            const url = e.target.value.trim();
+            
+            if (url.length === 0) {
+                resetModal();
+                return;
+            }
+            
+            // Validar URL de YouTube
+            if (!isValidYouTubeURL(url)) {
+                return;
+            }
+            
+            // Extraer ID del video
+            const videoId = extractYouTubeID(url);
+            if (!videoId) {
+                return;
+            }
+            
+            // Mostrar loading
+            document.getElementById('urlInputWrapper').classList.add('loading');
+            
+            try {
+                // Obtener información del video
+                const videoInfo = await getYouTubeVideoInfo(videoId);
+                
+                // Mostrar preview
+                showVideoPreview(videoInfo);
+                
+            } catch (error) {
+                console.error('Error al obtener información del video:', error);
+                document.getElementById('modalError').textContent = 'No se pudo obtener información del video. Verifica la URL.';
+                document.getElementById('modalError').style.display = 'block';
+            } finally {
+                document.getElementById('urlInputWrapper').classList.remove('loading');
+            }
+        });
+        
+        // Validar URL de YouTube
+        function isValidYouTubeURL(url) {
+            const patterns = [
+                /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+/,
+                /^https?:\/\/(www\.)?youtu\.be\/[\w-]+/,
+                /^https?:\/\/(www\.)?youtube\.com\/embed\/[\w-]+/
+            ];
+            
+            return patterns.some(pattern => pattern.test(url));
+        }
+        
+        // Extraer ID de YouTube
+        function extractYouTubeID(url) {
+            const patterns = [
+                /youtube\.com\/watch\?v=([\w-]+)/,
+                /youtu\.be\/([\w-]+)/,
+                /youtube\.com\/embed\/([\w-]+)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) {
+                    return match[1];
+                }
+            }
+            
+            return null;
+        }
+        
+        // Obtener información del video de YouTube
+        async function getYouTubeVideoInfo(videoId) {
+            // Usar la API de oEmbed para obtener información básica
+            const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+            
+            try {
+                const response = await fetch(oembedUrl);
+                if (!response.ok) {
+                    throw new Error('Video no encontrado');
+                }
+                
+                const data = await response.json();
+                
+                return {
+                    id: videoId,
+                    title: data.title,
+                    description: data.author_name || '',
+                    thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                    url: `https://www.youtube.com/watch?v=${videoId}`
+                };
+                
+            } catch (error) {
+                // Si falla oEmbed, usar información básica
+                return {
+                    id: videoId,
+                    title: `Video ${videoId}`,
+                    description: '',
+                    thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                    url: `https://www.youtube.com/watch?v=${videoId}`
+                };
+            }
+        }
+        
+        // Mostrar vista previa del video
+        function showVideoPreview(videoInfo) {
+            currentVideoData = videoInfo;
+            
+            // Actualizar imagen
+            document.getElementById('videoThumbnail').src = videoInfo.thumbnail;
+            
+            // Actualizar título y descripción
+            document.getElementById('videoTitle').value = videoInfo.title;
+            document.getElementById('videoDescription').value = videoInfo.description;
+            
+            // Mostrar sección de preview
+            document.getElementById('videoPreviewSection').classList.add('active');
+            
+            // Habilitar botón de agregar
+            document.getElementById('btnAddVideo').disabled = false;
+            
+            // Ocultar mensajes de error
+            document.getElementById('modalError').style.display = 'none';
+        }
+        
+        // Agregar video desde el modal
+        async function addVideoFromModal() {
+            if (!currentVideoData) {
+                document.getElementById('modalError').textContent = 'Primero ingresa una URL válida de YouTube.';
+                document.getElementById('modalError').style.display = 'block';
+                return;
+            }
+            
+            // Obtener datos del formulario
+            const title = document.getElementById('videoTitle').value.trim();
+            const description = document.getElementById('videoDescription').value.trim();
+            
+            if (!title) {
+                document.getElementById('modalError').textContent = 'El título es obligatorio.';
+                document.getElementById('modalError').style.display = 'block';
+                return;
+            }
+            
+            // Crear objeto del video
+            const newVideo = {
+                id: currentVideoData.id,
+                titulo: title,
+                descripcion: description || 'Video destacado de TÍO SERGIO',
+                enlace: currentVideoData.url,
+                activo: false
+            };
+            
+            try {
+                // Agregar a los datos actuales
+                currentData.youtube.videos.push(newVideo);
+                
+                // Guardar datos
+                await window.adminAPI.saveData(currentData);
+                
+                // Actualizar vista
+                renderVideos();
+                
+                // Mostrar éxito
+                document.getElementById('modalSuccess').textContent = '✅ Video agregado correctamente';
+                document.getElementById('modalSuccess').style.display = 'block';
+                
+                // Cerrar modal después de 2 segundos
+                setTimeout(() => {
+                    closeVideoModal();
+                }, 2000);
+                
+            } catch (error) {
+                document.getElementById('modalError').textContent = 'Error al agregar el video: ' + error.message;
+                document.getElementById('modalError').style.display = 'block';
+            }
+        }
+        
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                if (modal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            }
+        });
+        
+        // Cerrar modal haciendo clic fuera
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
             }
         });
         
